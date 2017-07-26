@@ -1,0 +1,30 @@
+<!-- MathJax -->
+<!--<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function ( ) {
+
+	document.querySelectorAll( '.math' )
+	.forEach( function ( element ) {
+		try {
+			var tex = element.textContent ;
+			var math = tex.substr(2, tex.length - 4) ;
+			var displayMode = tex.substr(0, 2) == '\\[' ;
+			try {
+				katex.render(math, element, {displayMode: displayMode});
+			}
+			catch ( e ) {
+				console.error( e ) ;
+				console.debug( element, tex , math , { displayMode: displayMode});
+			}
+		}
+		catch ( e ) {
+			console.error( e ) ;
+		}
+	});
+
+});
+</script>

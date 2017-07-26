@@ -1,0 +1,12 @@
+name = "prove"
+license = "AGPL-3.0"
+licenselink = "https://github.com/aureooms/hugo-prove/blob/master/LICENSE.md"
+description = "A theme for writing mathematical proofs."
+homepage = "https://github.com/aureooms/hugo-prove"
+tags = []
+features = []
+min_version = "0.19"
+
+[author]
+  name = "Aurélien Ooms"
+  homepage = "https://aureooms.github.io"

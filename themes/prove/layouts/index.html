@@ -1,0 +1,10 @@
+{{ partial "header.html" . }}
+
+  {{ range .Paginator.Pages }}
+    <h2><a href="{{ .Permalink }}">{{ .Title | safeHTML }}</a></h2>
+    {{ .Summary }}
+  {{ end }}
+
+  {{ template "_internal/pagination.html" . }}
+
+{{ partial "footer.html" . }}
