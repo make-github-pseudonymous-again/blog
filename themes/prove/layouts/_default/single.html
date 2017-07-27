@@ -1,7 +1,9 @@
 {{ partial "header.html" . }}
 
-  <h1>{{ .Title | safeHTML }}</h1>
-  <h2>{{ .Date.Format "Mon, Jan 2, 2006" }}</h2>
-  {{ .Content }}
+  <article>
+    <h1>{{ .Title | safeHTML }}</h1>
+    <h2>{{ .Date.Format "Mon, Jan 2, 2006" }}</h2>
+    <p>{{ .Content }}</p>
+  </article>
 
 {{ partial "footer.html" . }}

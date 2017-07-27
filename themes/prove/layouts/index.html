@@ -1,10 +1,28 @@
 {{ partial "header.html" . }}
 
+  <div class="container">
   {{ range .Paginator.Pages }}
-    <h2><a href="{{ .Permalink }}">{{ .Title | safeHTML }}</a></h2>
-    {{ .Summary }}
+  <div class="row">
+  <div class="col-md-12">
+    <div class="card text-center mb-3">
+      <div class="card-header text-muted">{{ .Date.Format "Mon, Jan 2, 2006" }}</div>
+      {{ with .Param "thumbnail" }}<img class="card-img-top" src="{{ .src }}" alt="{{ .caption }}">{{ end }}
+      <div class="card-block">
+        <h1 class="card-title">{{ .Title | safeHTML }}</h1>
+        <p class="card-text">{{ .Summary }}</p>
+        <a href="{{ .Permalink }}" class="btn btn-primary">Read more about {{ .Title | safeHTML }}</a>
+        <div class="pull-right">
+          {{ range .Params.tags }}
+            <span class="badge badge-default"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
   {{ end }}
+  </div>
 
-  {{ template "_internal/pagination.html" . }}
+  {{ partial "pagination.html" . }}
 
 {{ partial "footer.html" . }}
