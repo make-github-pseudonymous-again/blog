@@ -1,5 +1,12 @@
 {{ partial "header.html" . }}
 
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item{{ if eq .Paginator.PageNumber 1 }} active {{ end }}" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    {{ if gt .Paginator.PageNumber 1 }}
+    <a class="breadcrumb-item active" href="{{ .Paginator.URL }}">Page {{ .Paginator.PageNumber }}</a>
+    {{ end }}
+  </nav>
+
   <div class="container">
   {{ range .Paginator.Pages }}
   <div class="row">
@@ -10,7 +17,7 @@
       <div class="card-block">
         <h1 class="card-title">{{ .Title | safeHTML }}</h1>
         <p class="card-text">{{ .Summary }}</p>
-        <a href="{{ .Permalink }}" class="btn btn-primary">Read more about {{ .Title | safeHTML }}</a>
+        <a href="{{ .RelPermalink }}" class="btn btn-primary">Read more about {{ .Title | safeHTML }}</a>
         <div class="pull-right">
           {{ range .Params.tags }}
             <span class="badge badge-default"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
