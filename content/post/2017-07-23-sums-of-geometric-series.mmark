@@ -17,7 +17,7 @@ $$
 
 <!--more-->
 That's nice. There are many ways to prove it, a cool one is to first
-[prove](https://aureooms.github.io/converging-series) that
+[prove](/math/2017/04/21/converging-series) that
 
 $$
 \sum_{i=0}^{\infty} x^i = \frac{1}{ {(1-x)} },

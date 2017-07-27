@@ -4,7 +4,7 @@ title: Polyhedral sets
 url: /2016/01/15/polyhedral-sets/
 ---
 
-A *polyhedral set* set in $$\mathbb{R}^d$$ is the intersection of a finite
+A *polyhedral set* in $$\mathbb{R}^d$$ is the intersection of a finite
 number of closed halfspaces, and a *(convex) polytope* is a bounded polyhedral
 set. This definition of a polytope is called a *halfspace representation*
 (*H-representation* or *H-description*).
