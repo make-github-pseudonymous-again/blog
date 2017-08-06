@@ -4,8 +4,6 @@ title: Converging series
 url: /2017/04/21/converging-series/
 ---
 
-## Theorem
-
 Let $$-1 < x < 1$$,
 
 $$
@@ -21,4 +19,10 @@ $$
 \lim_{k \to \infty} (1 - x)(1 + x + x^2 + x^3 + x^4 + \cdots + x^k) &= \lim_{k \to \infty} 1 - x^{k+1}, \\
 (1 - x)(1 + x + x^2 + x^3 + x^4 + \cdots) &= 1.
 \end{aligned}
+$$
+
+A fun way to prove it for $$x = \frac1b$$ with $$b \in \mathbb{N}_0$$ is to note that for $$a = b-1$$
+
+$$
+1.111\ldots_b = \frac{a.aaa\ldots_b}{a} = \fracba.
 $$
