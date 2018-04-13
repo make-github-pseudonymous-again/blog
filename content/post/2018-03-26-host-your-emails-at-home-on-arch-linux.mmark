@@ -1,0 +1,70 @@
+---
+date: 2018-03-26T00:00:00Z
+title: Host your e-mails at home on Arch Linux
+url: /2018/03/26/host-your-emails-at-home-on-arch-linux/
+---
+
+A tutorial explaining how to host your electronic mail at home on Arch Linux.
+
+<!--more-->
+
+## Get a domain name.
+
+## Fixed IP address or dynamic DNS.
+
+## Install a SMTP server
+
+### Install `mariadb`
+
+Detailed instructions [here](https://wiki.archlinux.org/index.php/MySQL).
+
+```sh
+pacman -S mariadb
+```
+
+```sh
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl enable --now mariadb
+mysql_secure_installation
+```
+
+### Install `postfix`
+
+Detailed instructions [here](https://wiki.archlinux.org/index.php/Postfix).
+
+```sh
+pacman -S postfix
+```
+
+#### Make it secure
+
+Add the following lines to `main.cf`:
+
+```sh
+smtp_tls_security_level = encrypt
+smtpd_tls_exclude_ciphers = aNULL, eNULL, EXPORT, DES, RC4, MD5, PSK, aECDH, EDH-DSS-DES-CBC3-SHA, EDH-RSA-DES-CBC3-SHA, KRB5-DES, CBC3-SHA
+smtpd_tls_dh1024_param_file = ${config_directory}/dhparams.pem
+```
+
+Execute the following inside /etc/postfix (`postconf -d | grep config_directory`)
+```sh
+openssl dhparam -out dhparams.pem 2048
+```
+
+Create some SSL keys using Let's Encrypt
+```sh
+pacman -S certbot
+```
+
+... TODO
+
+#### Start it
+
+```sh
+systemctl enable --now postfix
+```
+
+
+
+### Configure
+
