@@ -1,0 +1,64 @@
+---
+title: "2018 05 24 Automatically Mount Luks Encrypted Device With Systemd"
+date: 2018-05-24T17:27:54+02:00
+draft: true
+---
+Following the [good advice of
+laclaro](https://laclaro.wordpress.com/2017/11/02/mount-encrypted-disk-with-systemd).
+
+We assume your device is already encrypted with LUKS. All commands are run as
+root.
+
+Create a new key for device:
+
+	$ mkdir /root/key
+	$ dd bs=512 count=4 if=/dev/urandom of=/root/key/storage
+	$ cryptsetup luksAddKey /dev/sdx1 /root/key/storage
+
+Grab device serial number
+
+	$ udevadm info --attribute-walk --name=/dev/sdx1 | grep serial | head -1
+
+We will call our device `storage`. It will be mounted at `/media/storage`.
+
+	$ cat /etc/udev/rules.d/storage.rules
+	ACTION=="add", KERNEL=="sd[a-z][0-9]", ATTRS{serial}=="putserialnumberhere", SYMLINK+="storage", TAG+="systemd", ENV{SYSTEMD_WANTS}+="media-storage.mount"
+
+	$ cat /etc/systemd/system/media-storage.mount
+	[Unit]
+	Conflicts=umount.target
+	Before=umount.target
+	BindsTo=storage-decrypt.service dev-storage.device
+	After=storage-decrypt.service dev-mapper-storage.device
+	# you may specify some unit file that depends on media-storage.mount
+	# Wants=storage-postmount.service
+	[Mount]
+	What=/dev/mapper/storage
+	Where=/media/storage
+	Type=ext4
+	Options=defaults,rw,noexec,x-systemd.automount,relatime
+
+	$ cat /etc/systemd/system/storage-decrypt.service
+	[Unit]
+	Description=storage decrypt
+	BindsTo=media-storage.mount dev-storage.device
+	Requires=dev-storage.device
+	After=dev-storage.device
+
+	[Service]
+	Type=oneshot
+	TimeoutStartSec=0
+	RemainAfterExit=yes
+	KillMode=none
+	ExecStart=/sbin/cryptsetup luksOpen -d /root/key/storage /dev/storage storage
+	ExecStop=/sbin/cryptsetup luksClose storage
+
+	[Install]
+	RequiredBy=media-storage.mount
+
+Unplug your device. Reload the config:
+
+	$ udevadm control --reload-rules
+	$ systemctl daemon-reload
+
+Replug your device.
