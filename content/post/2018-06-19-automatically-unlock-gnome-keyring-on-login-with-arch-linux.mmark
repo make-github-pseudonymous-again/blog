@@ -13,9 +13,9 @@ and create a new one.
 Follow the instructions
 [here](https://wiki.archlinux.org/index.php/GNOME/Keyring#Console_login):
 
-Add `auth optional pam_gnome_keyring.so` at the end of the auth section and
-`session optional pam_gnome_keyring.so auto_start at the end of the session
-section.
+In `/etc/pam.d/login`, add `auth optional pam_gnome_keyring.so` at the end of
+the auth section and `session optional pam_gnome_keyring.so auto_start at the
+end of the session section.
 
 	#%PAM-1.0
 
