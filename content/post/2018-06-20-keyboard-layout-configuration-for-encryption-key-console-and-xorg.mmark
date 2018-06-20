@@ -1,0 +1,28 @@
+---
+title: "2018 06 20 Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg"
+date: 2018-06-20T16:31:13+02:00
+draft: false
+---
+
+## My keyboard layout is not setup for Xorg
+
+Setup your keymap using `setxkbmap` when launching `X`, for instance in `.xprofile`
+
+    # ~/.xprofile
+    setxkbmap be
+
+## My keyboard layout is not setup for the virtual console
+
+Write your chosen keymap in `/etc/vconsole.conf`
+
+    # /etc/vconsole.conf
+    KEYMAP=be-latin1
+
+## My keyboard layout is not setup for the encryption key
+
+Put the `keymap` hook before the `keyboard` hook in `/etc/mkinitcpio.conf`
+
+    # /etc/mkinitcpio.conf
+    ...
+    HOOKS="base udev autodetect modconf block keymap keyboard encrypt filesystems fsck"
+    ...
