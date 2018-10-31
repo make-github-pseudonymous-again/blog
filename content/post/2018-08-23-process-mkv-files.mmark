@@ -26,3 +26,8 @@ Given you just extracted a `file.idx` and `file.sub` file pair and have
 `vobsub2srt` installed
 
     vobsub2srt file
+
+NB: For OCR to work, a per language package must be installed. For instance,
+for English:
+
+    pacman -S tesseract-data-eng
