@@ -1,8 +1,11 @@
 ---
 date: 2018-04-05T00:00:00Z
-title: Host your files at home with Nextcloud
-url: /2018/04/05/host-your-files-at-home-with-nextcloud/
+title: Setup your calendar with Nextcloud on Arch Linux
 ---
+
+Ever wanted to get rid of your dependency on Google Calendar?
+
+<!--more-->
 
 [Install Nextcloud by following the instruction
 here](/2018/04/05/host-your-files-at-home-with-nextcloud/).

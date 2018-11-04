@@ -1,8 +1,13 @@
 ---
-title: "2018 06 20 Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg"
+title: Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg
 date: 2018-06-20T16:31:13+02:00
 draft: false
 ---
+
+This post is about everything you ever wanted to ask about keyboard layout
+misconfiguration.
+
+<!--more-->
 
 ## My keyboard layout is not setup for Xorg
 

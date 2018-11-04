@@ -1,8 +1,11 @@
 ---
 date: 2018-04-10T00:00:00Z
 title: Install and configure NGiИX with HTTPS on Arch Linux
-url: /2018/04/10/install-and-configure-nginx-with-https-on-arch-linux/
 ---
+
+NGiИX is useful to proxy all sorts of web servers.
+
+<!--more-->
 
 > All the commands and edits must be run and made as root.
 
