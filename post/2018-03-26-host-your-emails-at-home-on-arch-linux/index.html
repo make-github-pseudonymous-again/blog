@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Host your e-mails at home on Arch Linux</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-03-26-host-your-emails-at-home-on-arch-linux/">Post 1905c88175d078d2e9a90e67e49fc47d</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Host your e-mails at home on Arch Linux</h1>
+    <h4>Mon, Mar 26, 2018</h4>
+    <p><p>A tutorial explaining how to host your electronic mail at home on Arch Linux.</p>
+
+<p></p>
+
+<h2 id="get-a-domain-name">Get a domain name.</h2>
+
+<h2 id="fixed-ip-address-or-dynamic-dns">Fixed IP address or dynamic DNS.</h2>
+
+<h2 id="install-a-smtp-server">Install a SMTP server</h2>
+
+<h3 id="install-mariadb">Install <code>mariadb</code></h3>
+
+<p>Detailed instructions <a href="https://wiki.archlinux.org/index.php/MySQL">here</a>.</p>
+
+<pre><code class="language-sh">pacman -S mariadb
+</code></pre>
+
+<pre><code class="language-sh">mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl enable --now mariadb
+mysql_secure_installation
+</code></pre>
+
+<h3 id="install-postfix">Install <code>postfix</code></h3>
+
+<p>Detailed instructions <a href="https://wiki.archlinux.org/index.php/Postfix">here</a>.</p>
+
+<pre><code class="language-sh">pacman -S postfix
+</code></pre>
+
+<h4 id="make-it-secure">Make it secure</h4>
+
+<p>Add the following lines to <code>main.cf</code>:</p>
+
+<pre><code class="language-sh">smtp_tls_security_level = encrypt
+smtpd_tls_exclude_ciphers = aNULL, eNULL, EXPORT, DES, RC4, MD5, PSK, aECDH, EDH-DSS-DES-CBC3-SHA, EDH-RSA-DES-CBC3-SHA, KRB5-DES, CBC3-SHA
+smtpd_tls_dh1024_param_file = ${config_directory}/dhparams.pem
+</code></pre>
+
+<p>Execute the following inside /etc/postfix (<code>postconf -d | grep config_directory</code>)</p>
+
+<pre><code class="language-sh">openssl dhparam -out dhparams.pem 2048
+</code></pre>
+
+<p>Create some SSL keys using Let's Encrypt</p>
+
+<pre><code class="language-sh">pacman -S certbot
+</code></pre>
+
+<p>... TODO</p>
+
+<h4 id="start-it">Start it</h4>
+
+<pre><code class="language-sh">systemctl enable --now postfix
+</code></pre>
+
+<h3 id="configure">Configure</h3></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+

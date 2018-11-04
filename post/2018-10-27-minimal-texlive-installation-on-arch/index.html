@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minimal TeX Live installation on Arch</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-10-27-minimal-texlive-installation-on-arch/">Post d157ed55f314e3383afd1edef5499a8d</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Minimal TeX Live installation on Arch</h1>
+    <h4>Sat, Oct 27, 2018</h4>
+    <p><p>Why install more than necessary?</p>
+
+<p></p>
+
+<p>Absolute minimum</p>
+
+<pre><code>texlive-bin # TeX Live binaries
+texlive-core # TeX Live core distribution
+</code></pre>
+
+<p>For math</p>
+
+<pre><code>texlive-science # TeX Live - Typesetting for mathematics, natural and computer sciences
+texlive-pictures # TeX Live - Packages for drawings graphics
+texlive-pstricks # TeX Live - Additional PSTricks packages
+</code></pre>
+
+<p>For <code>authblk.sty</code></p>
+
+<pre><code>texlive-latexextra # TeX Live - Large collection of add-on packages for LaTeX
+</code></pre></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+

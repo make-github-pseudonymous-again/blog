@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Host your files at home with Nextcloud</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-04-05-host-your-files-at-home-on-arch-linux/">Post 6c490e8d0dcb279747c9f6e275947191</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Host your files at home with Nextcloud</h1>
+    <h4>Thu, Apr 5, 2018</h4>
+    <p><p>Ever wanted to get rid of your dependency on Dropbox and Google Drive?</p>
+
+<p></p>
+
+<blockquote>
+<p>More details <a href="https://wiki.archlinux.org/index.php/Nextcloud">here</a>.</p>
+</blockquote>
+
+<p><a href="/2018/04/10/install-and-configure-nginx-with-https-on-arch-linux/">Install and configure NGiИX</a>.</p>
+
+<h3 id="postgresqlhttpswikiarchlinuxorgindexphppostgresql"><a href="https://wiki.archlinux.org/index.php/PostgreSQL">PostgreSQL</a></h3>
+
+<p>Install the relevant packages:</p>
+
+<pre><code>sudo pacman -S postgresql
+</code></pre>
+
+<p>Init the database:</p>
+
+<pre><code>sudo -u postgres -i
+[postgres]$ initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
+[postgres]$ exit
+</code></pre>
+
+<p>Enable and start the service:</p>
+
+<pre><code>sudo systemctl enable --now postgresql
+</code></pre>
+
+<p>Create a user and a database:</p>
+
+<pre><code>sudo -u postgres createuser -h localhost -P nextcloud
+sudo -u postgres createdb -O nextcloud nextcloud
+</code></pre>
+
+<h3 id="phphttpswikiarchlinuxorgindexphpphp"><a href="https://wiki.archlinux.org/index.php/PHP">PHP</a></h3>
+
+<p>Install relevant packages:</p>
+
+<pre><code>pacman -S php php-pgsql php-intl php-gd php-fpm
+</code></pre>
+
+<p>Edit the following lines in <code>/etc/php/php.ini</code>:</p>
+
+<pre><code>data.timezone = Europe/Brussels
+extension=gd
+extension=iconv
+extension=pdo_pgsql
+extension=pgsql
+</code></pre>
+
+<p>Do not forget to configure <code>php-fpm</code></p>
+
+<p>Uncomment <code>env[PATH] = /usr/local/bin:/usr/bin:/bin</code> in <code>/etc/php/php-fpm.d/www.conf</code></p>
+
+<pre><code>systemctl enable --now php-fpm
+</code></pre>
+
+<h3 id="ngiиx">NGiИX</h3>
+
+<pre><code>mkdir /etc/nginx/conf.d
+
+# /etc/nginx/nginx.conf
+http {
+    ...
+    ...
+    server_names_hash_bucket_size 64;
+    include conf.d/*.conf;
+}
+</code></pre>
+
+<p>Create a server block <a href="https://docs.nextcloud.com/server/13/admin_manual/installation/nginx.html">as here
+(webroot)</a>
+in <code>/etc/nginx/conf.d/nextcloud.conf</code>.</p>
+
+<p>Use <code>/usr/share/webapps/nextcloud</code> instead of <code>/var/www/nextcloud</code>. Change the
+upstream hook.</p>
+
+<pre><code>upstream php-handler {
+   server unix:/run/php-fpm/php-fpm.sock;
+}
+</code></pre>
+
+<p>Then restart the service:</p>
+
+<pre><code>systemctl restart nginx
+</code></pre>
+
+<h3 id="configure-nextcloud">Configure Nextcloud</h3>
+
+<pre><code>mkdir -p /usr/share/webapps/nextcloud/{data,apps2}
+chown http:http /usr/share/webapps/nextcloud/{data,apps2}
+chmod 700 /usr/share/webapps/nextcloud/{data,apps2}
+
+# /etc/webapps/nextcloud/config/config.php
+'apps_paths' =&gt;
+  array (
+    0 =&gt;
+    array (
+      'path' =&gt; '/usr/share/webapps/nextcloud/apps',
+      'url' =&gt; '/apps',
+      'writable' =&gt; false,
+    ),
+    1 =&gt;
+    array (
+      'path' =&gt; '/usr/share/webapps/nextcloud/apps2',
+      'url' =&gt; '/apps2',
+      'writable' =&gt; true,
+    ),
+  ),
+  'datadirectory' =&gt; '/usr/share/webapps/nextcloud/data'
+</code></pre></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+

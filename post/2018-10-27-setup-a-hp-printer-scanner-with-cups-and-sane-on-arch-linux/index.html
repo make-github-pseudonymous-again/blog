@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Setup a HP printer/scanner with CUPS and SANE on Arch Linux</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-10-27-setup-a-hp-printer-scanner-with-cups-and-sane-on-arch-linux/">Post 86aa57090055a911a6ffe3d42278a9ed</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Setup a HP printer/scanner with CUPS and SANE on Arch Linux</h1>
+    <h4>Sat, Oct 27, 2018</h4>
+    <p><p>This example worked with HP LaserJet MFP M130nw (2018).</p>
+
+<p></p>
+
+<p>Install <code>cups</code>, <code>sane</code> and <code>hplip</code></p>
+
+<pre><code>pacman -S cups sane hplip
+</code></pre>
+
+<p>Enable and starts <code>cups-browsed</code></p>
+
+<pre><code>systemctl enable --now cups-browsed.service
+</code></pre>
+
+<p>With the IP address of your HP printer/scanner, query its uri's</p>
+
+<pre><code>hp-makeuri &lt;printer-ip-address&gt;
+...
+CUPS URI: hp:/net/HP_LaserJet_MFP_M129-M134?ip=...
+SANE URI: hpaio:/net/HP_LaserJet_MFP_M129-M134?ip=...
+HP Fax URI: hpfax:/net/HP_LaserJet_MFP_M129-M134?ip=...
+...
+</code></pre>
+
+<p>In the CUPS interface (<a href="http://localhost:631">http://localhost:631</a>), configure a new printer:</p>
+
+<ol>
+<li>Go to <em>Administration</em> (<a href="http://localhost:631/admin">http://localhost:631/admin</a>),</li>
+<li>Click <em>Add Printer</em>,</li>
+<li>Select <em>AppSocket/HP JetDirect</em> and click <em>Continue</em>,</li>
+<li>Enter the CUPS URI from above (hp:/...) and click <em>Continue</em>,</li>
+<li>Enter details for the printer and check the <em>Share printer</em> option,</li>
+<li>Select a driver under make HP (name should match URI),</li>
+<li>Set defaults.</li>
+</ol>
+
+<p>Check that the printer works and can be used by other computers on the network.</p>
+
+<p>Install HP proprietary plugins (source <a href="https://askubuntu.com/q/153746/139673">https://askubuntu.com/q/153746/139673</a>)</p>
+
+<pre><code>hp-plugin
+</code></pre>
+
+<p>Check that SANE finds the scanner</p>
+
+<pre><code>scanimage -L
+device `hpaio:/net/HP_LaserJet_MFP_M129-M134?ip=...' is a Hewlett-Packard HP_LaserJet_MFP_M129-M134 all-in-one
+</code></pre>
+
+<p>Test the scanner (see output of <code>scanimage --help</code> for options)</p>
+
+<pre><code>scanimage --device-name 'hpaio:/net/HP_LaserJet_MFP_M129-M134?ip=...' --mode Gray --resolution 150 --format png --progress &gt; test.png
+</code></pre>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>So far it seems it is not possible to share the scanning capability over the
+network (sane blocks share /net scanners).</p></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+

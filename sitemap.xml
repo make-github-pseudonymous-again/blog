@@ -1,20 +1,71 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://aureooms.github.io/blog/2018/03/26/deploy-hugo-to-gh-pages/</loc>
+    <loc>https://aureooms.github.io/blog/post/2018-10-27-minimal-texlive-installation-on-arch/</loc>
+    <lastmod>2018-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-10-27-setup-a-hp-printer-scanner-with-cups-and-sane-on-arch-linux/</loc>
+    <lastmod>2018-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-08-23-process-mkv-files/</loc>
+    <lastmod>2018-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-06-20-keyboard-layout-configuration-for-encryption-key-console-and-xorg/</loc>
+    <lastmod>2018-06-20T16:31:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-04-10-install-and-configure-nginx-with-https-on-arch-linux/</loc>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-04-05-host-your-files-at-home-on-arch-linux/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-04-12-setup-your-calendar-with-nextcloud-on-arch-linux/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-03-26-publish-hugo-to-gh-pages/</loc>
+    <lastmod>2018-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/post/2018-03-26-host-your-emails-at-home-on-arch-linux/</loc>
     <lastmod>2018-03-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://aureooms.github.io/blog/</loc>
-    <lastmod>2018-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://aureooms.github.io/blog/post/</loc>
-    <lastmod>2018-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aureooms.github.io/blog/tags/</loc>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Process MKV files</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-08-23-process-mkv-files/">Post 33e40ab53cccd36d4a849eb79e411b69</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Process MKV files</h1>
+    <h4>Wed, Aug 22, 2018</h4>
+    <p><p>Here is a list of things you might want to do once you get your hands on a MKV
+file.</p>
+
+<p></p>
+
+<h2 id="transcode-the-soundtrack-to-some-other-format">Transcode the soundtrack to some other format</h2>
+
+<pre><code>for x in *.mkv
+    ffmpeg -i $x -c:v copy -c:a aac $x.mp4
+end
+</code></pre>
+
+<h2 id="extract-a-subtitle-track">Extract a subtitle track</h2>
+
+<pre><code>mkvmerge -i file.mkv
+mkvextract tracks file.mkv 1:file-en.srt
+</code></pre>
+
+<h2 id="vobsub-to-srt">VOBSUB to SRT</h2>
+
+<p>Given you just extracted a <code>file.idx</code> and <code>file.sub</code> file pair and have
+<code>vobsub2srt</code> installed</p>
+
+<pre><code>vobsub2srt file
+</code></pre>
+
+<p>NB: For OCR to work, a per language package must be installed. For instance,
+for English:</p>
+
+<pre><code>pacman -S tesseract-data-eng
+</code></pre></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+

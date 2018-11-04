@@ -2,19 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aurélien&#39;s blog</title>
-    <link>https://aureooms.github.io/blog/index.xml</link>
+    <link>https://aureooms.github.io/blog/</link>
     <description>Recent content on Aurélien&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 26 Mar 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://aureooms.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aureooms.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Minimal TeX Live installation on Arch</title>
+      <link>https://aureooms.github.io/blog/post/2018-10-27-minimal-texlive-installation-on-arch/</link>
+      <pubDate>Sat, 27 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-10-27-minimal-texlive-installation-on-arch/</guid>
+      <description>&lt;p&gt;Why install more than necessary?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Setup a HP printer/scanner with CUPS and SANE on Arch Linux</title>
+      <link>https://aureooms.github.io/blog/post/2018-10-27-setup-a-hp-printer-scanner-with-cups-and-sane-on-arch-linux/</link>
+      <pubDate>Sat, 27 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-10-27-setup-a-hp-printer-scanner-with-cups-and-sane-on-arch-linux/</guid>
+      <description>&lt;p&gt;This example worked with HP LaserJet MFP M130nw (2018).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Process MKV files</title>
+      <link>https://aureooms.github.io/blog/post/2018-08-23-process-mkv-files/</link>
+      <pubDate>Wed, 22 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-08-23-process-mkv-files/</guid>
+      <description>&lt;p&gt;Here is a list of things you might want to do once you get your hands on a MKV
+file.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg</title>
+      <link>https://aureooms.github.io/blog/post/2018-06-20-keyboard-layout-configuration-for-encryption-key-console-and-xorg/</link>
+      <pubDate>Wed, 20 Jun 2018 16:31:13 +0200</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-06-20-keyboard-layout-configuration-for-encryption-key-console-and-xorg/</guid>
+      <description>&lt;p&gt;This post is about everything you ever wanted to ask about keyboard layout
+misconfiguration.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Install and configure NGiИX with HTTPS on Arch Linux</title>
+      <link>https://aureooms.github.io/blog/post/2018-04-10-install-and-configure-nginx-with-https-on-arch-linux/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-04-10-install-and-configure-nginx-with-https-on-arch-linux/</guid>
+      <description>&lt;p&gt;NGiИX is useful to proxy all sorts of web servers.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Host your files at home with Nextcloud</title>
+      <link>https://aureooms.github.io/blog/post/2018-04-05-host-your-files-at-home-on-arch-linux/</link>
+      <pubDate>Thu, 05 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-04-05-host-your-files-at-home-on-arch-linux/</guid>
+      <description>&lt;p&gt;Ever wanted to get rid of your dependency on Dropbox and Google Drive?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Setup your calendar with Nextcloud on Arch Linux</title>
+      <link>https://aureooms.github.io/blog/post/2018-04-12-setup-your-calendar-with-nextcloud-on-arch-linux/</link>
+      <pubDate>Thu, 05 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-04-12-setup-your-calendar-with-nextcloud-on-arch-linux/</guid>
+      <description>&lt;p&gt;Ever wanted to get rid of your dependency on Google Calendar?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Deploy a Hugo website to gh-pages branch on GitHub</title>
-      <link>https://aureooms.github.io/blog/2018/03/26/deploy-hugo-to-gh-pages/</link>
+      <link>https://aureooms.github.io/blog/post/2018-03-26-publish-hugo-to-gh-pages/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://aureooms.github.io/blog/2018/03/26/deploy-hugo-to-gh-pages/</guid>
+      <guid>https://aureooms.github.io/blog/post/2018-03-26-publish-hugo-to-gh-pages/</guid>
       <description>&lt;p&gt;Follow &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-of-project-pages-from-your-gh-pages-branch&#34;&gt;the instructions on Hugo&#39;s website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Host your e-mails at home on Arch Linux</title>
+      <link>https://aureooms.github.io/blog/post/2018-03-26-host-your-emails-at-home-on-arch-linux/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://aureooms.github.io/blog/post/2018-03-26-host-your-emails-at-home-on-arch-linux/</guid>
+      <description>&lt;p&gt;A tutorial explaining how to host your electronic mail at home on Arch Linux.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

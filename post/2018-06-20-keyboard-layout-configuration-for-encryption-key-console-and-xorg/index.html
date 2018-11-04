@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ( ) => {
+	document
+	.querySelectorAll( '.math' )
+	.forEach( element => renderMathInElement(element) ) ;
+});
+</script>
+
+</head>
+<body>
+
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="https://aureooms.github.io/blog/">Aurélien&#39;s blog</a>
+    <a class="breadcrumb-item active" href="/blog/post/2018-06-20-keyboard-layout-configuration-for-encryption-key-console-and-xorg/">Post f21c6d0f71eebfe55d50d7f8706f6dbd</a>
+  </nav>
+
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-md-12">
+  <article>
+    <h1>Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg</h1>
+    <h4>Wed, Jun 20, 2018</h4>
+    <p><p>This post is about everything you ever wanted to ask about keyboard layout
+misconfiguration.</p>
+
+<p></p>
+
+<h2 id="my-keyboard-layout-is-not-setup-for-xorg">My keyboard layout is not setup for Xorg</h2>
+
+<p>Setup your keymap using <code>setxkbmap</code> when launching <code>X</code>, for instance in <code>.xprofile</code></p>
+
+<pre><code># ~/.xprofile
+setxkbmap be
+</code></pre>
+
+<h2 id="my-keyboard-layout-is-not-setup-for-the-virtual-console">My keyboard layout is not setup for the virtual console</h2>
+
+<p>Write your chosen keymap in <code>/etc/vconsole.conf</code></p>
+
+<pre><code># /etc/vconsole.conf
+KEYMAP=be-latin1
+</code></pre>
+
+<h2 id="my-keyboard-layout-is-not-setup-for-the-encryption-key">My keyboard layout is not setup for the encryption key</h2>
+
+<p>Put the <code>keymap</code> hook before the <code>keyboard</code> hook in <code>/etc/mkinitcpio.conf</code></p>
+
+<pre><code># /etc/mkinitcpio.conf
+...
+HOOKS=&quot;base udev autodetect modconf block keymap keyboard encrypt filesystems fsck&quot;
+...
+</code></pre></p>
+  </article>
+  </div>
+  </div>
+  </div>
+
+</body>
+</html>
+
