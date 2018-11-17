@@ -30,3 +30,8 @@ NB: For OCR to work, a per language package must be installed. For instance,
 for English:
 
     pacman -S tesseract-data-eng
+
+If your player only supports a limited set of encodings or there is a mismatch
+of encodings somewhere and you are satisfied with ASCII only output try:
+
+    iconv -f utf8 -t ascii//translit < before.srt > after.srt
