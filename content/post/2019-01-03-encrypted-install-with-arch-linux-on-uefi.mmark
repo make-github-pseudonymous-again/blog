@@ -1,0 +1,156 @@
+---
+title: Encrypted Install With Arch Linux on UEFI
+date: 2019-01-03T00:27:32+01:00
+draft: true
+---
+
+So easy!
+
+<!--more-->
+
+Follow video ...
+
+Check you are in EFI mode
+
+	ls /sys/firmware/efi
+	...
+
+Update the system clock
+
+	timedatectl set-ntp true
+
+List disks
+
+	lsblk
+
+Partition the storage device
+
+	gdisk /dev/sda
+	o
+	y
+	n
+	<enter>
+	<enter>
+	+512MiB
+	ef00
+	n
+	<enter>
+	<enter>
+	<enter>
+	8e00
+	w
+	y
+
+Format boot partition
+
+	mkfs.fat -F32 /dev/sda1
+
+Encrypt main partition
+
+	cryptsetup luksFormat /dev/sda2
+	YES
+	<passphrase>
+	<passphrase>
+
+Open main partition
+
+	cryptsetup open --type luks /dev/sda2 main
+	<passphrase>
+
+Partition LVM volume
+
+	pvcreate /dev/mapper/main
+	vgcreate main /dev/mapper/main
+	lvcreate -L2G main -n swap
+	lvcreate -l 100%FREE main -n root
+
+
+Format root partition
+
+	mkfs.ext4 /dev/mapper/main-root
+
+Format swap partition
+
+	mkswap /dev/mapper/main-swap
+
+Mount partitions
+
+	mount /dev/mapper/main-root /mnt
+	mkdir /mnt/boot
+	mount /dev/sda1 /mnt/boot
+	swapon /dev/mapper/main-swap
+
+Bootstrap installation
+
+	pacstrap /mnt base base-devel vim git netctl iw dialog wpa_supplicant wpa_actiond firefox
+
+Generate /etc/fstab
+
+	genfstab -p /mnt >> /mtn/etc/fstab
+
+Chroot
+
+	arch-chroot /mnt
+
+Configure time
+
+	rm /etc/localtime
+	ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+	hwclock --systohc --utc
+
+Create root password
+
+	passwd
+	<password>
+	<password>
+
+Uncomment `UTF8` and `ISO-8859-1` `en_US` lines in `/etc/locale.gen`. Then
+
+	locale-gen
+	locale > /etc/locale.conf
+
+Configure the hostname
+
+	echo "hostname" > /etc/hostname
+
+Give keyboard access before mounting to type encryption password
+
+	# /etc/mkinitcpio.conf
+	HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems fsck)
+
+Regenerate initramfs
+
+	mkinitcpio -p linux
+
+Install the bootloader
+
+	bootctl --path=/boot install
+
+Create boot loader
+
+	# /boot/loader/loader.conf
+	default arch
+	timeout 3
+	editor 0
+
+Create boot loader entry
+
+	# /boot/loader/entries/arch.conf
+	title Arch Linux
+	linux /vmlinuz-linux
+	initrd /initramfs-linux.img
+	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root quiet rw
+
+Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda2`.
+
+Unmount and reboot
+
+	exit
+	cd
+	sync
+	umount -R /mnt
+	reboot
+
+Create an admin user
+
+	useradd -m -G wheel username
