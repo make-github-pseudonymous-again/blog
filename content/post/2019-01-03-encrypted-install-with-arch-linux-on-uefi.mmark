@@ -151,6 +151,6 @@ Unmount and reboot
 	umount -R /mnt
 	reboot
 
-Create an admin user
+Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
 
 	useradd -m -G wheel username
