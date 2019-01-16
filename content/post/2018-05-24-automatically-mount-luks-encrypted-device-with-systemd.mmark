@@ -17,12 +17,12 @@ Create a new key for device:
 
 Grab device serial number
 
-	$ udevadm info --attribute-walk --name=/dev/sdx1 | grep serial | head -1
+	$ udevadm info -n /dev/sdb1 | grep SERIAL
 
 We will call our device `storage`. It will be mounted at `/media/storage`.
 
 	$ cat /etc/udev/rules.d/storage.rules
-	ACTION=="add", KERNEL=="sd[a-z][0-9]", ATTRS{serial}=="putserialnumberhere", SYMLINK+="storage", TAG+="systemd", ENV{SYSTEMD_WANTS}+="media-storage.mount"
+	ACTION=="add", KERNEL=="sd[a-z][0-9]", ENV{ID_SERIAL_SHORT}=="putserialnumberhere", SYMLINK+="storage", TAG+="systemd", ENV{SYSTEMD_WANTS}+="media-storage.mount"
 
 	$ cat /etc/systemd/system/media-storage.mount
 	[Unit]
