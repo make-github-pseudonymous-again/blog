@@ -44,6 +44,7 @@ We will call our device `storage`. It will be mounted at `/media/storage`.
 	BindsTo=media-storage.mount dev-storage.device
 	Requires=dev-storage.device
 	After=dev-storage.device
+	DefaultDependencies=no
 
 	[Service]
 	Type=oneshot
