@@ -30,7 +30,7 @@ To delete /dev/sdXY run
 6. create new partition
 ##
 
-Use same type as before
+Use same type and same first block as before
 
 	fdisk /dev/sdX
 	n
@@ -45,6 +45,11 @@ Use same type as before
 Run `e2fsck`
 
 	e2fsck -f /dev/sdXY
+	y
+	y
+	y
+	y
+	...
 
 8. resize
 ##
@@ -53,3 +58,5 @@ Run `e2fsck`
 
 9. reboot
 ##
+
+The UUID should not have changed so no need to fix `/etc/fstab`.
