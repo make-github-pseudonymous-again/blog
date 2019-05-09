@@ -164,3 +164,9 @@ Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
 	passwd theadminusername
 	<password>
 	<password>
+
+Note that the login shell can be changed with
+
+	chsh -s <shell> <username>
+
+The list of available shells is available at `less /etc/shells`.
