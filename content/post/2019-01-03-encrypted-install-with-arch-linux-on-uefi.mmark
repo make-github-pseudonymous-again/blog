@@ -82,7 +82,7 @@ Mount partitions
 
 Bootstrap installation
 
-	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant wpa_actiond firefox
+	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant firefox
 	pacstrap /mnt base base-devel gvim git firefox # without WiFi
 
 Generate /etc/fstab
