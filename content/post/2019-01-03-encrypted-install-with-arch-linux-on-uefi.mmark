@@ -80,7 +80,7 @@ Mount partitions
 	mount /dev/sda1 /mnt/boot
 	swapon /dev/mapper/main-swap
 
-Bootstrap installation
+Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
 
 	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant firefox
 	pacstrap /mnt base base-devel gvim git firefox # without WiFi
