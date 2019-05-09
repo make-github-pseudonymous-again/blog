@@ -161,3 +161,6 @@ Unmount and reboot
 Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
 
 	useradd -m -G wheel theadminusername
+	passwd theadminusername
+	<password>
+	<password>
