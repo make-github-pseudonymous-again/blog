@@ -82,7 +82,7 @@ Mount partitions
 
 Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
 
-	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant firefox
+	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant wireless_tools firefox
 	pacstrap /mnt base base-devel gvim git firefox # without WiFi
 
 Generate /etc/fstab
