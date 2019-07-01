@@ -1,0 +1,49 @@
+---
+title: Encrypted USB key
+date: 2019-04-08T00:00:00+01:00
+draft: true
+---
+
+So easy!
+
+<!--more-->
+
+List disks
+
+	lsblk
+
+Create a single partition on the storage device
+
+	gdisk /dev/sdx
+	o
+	y
+	n
+	<enter>
+	<enter>
+	<enter>
+	<enter>
+	w
+	y
+
+Create a keyfile
+
+	mkdir -p /root/key
+	dd bs=512 count=4 if=/dev/urandom of=/root/key/storage iflag=fullblock
+
+Encrypt main partition
+
+	cryptsetup luksFormat /dev/sdx1 /root/key/storage
+	YES
+
+Open main partition and give it a name (storage)
+
+	cryptsetup --key-file /root/key/storage luksOpen /dev/sdx1 storage
+
+Format main partition
+
+	mkfs.ext4 /dev/mapper/storage
+
+Unmount and reboot
+
+	sync
+	cryptsetup close storage
