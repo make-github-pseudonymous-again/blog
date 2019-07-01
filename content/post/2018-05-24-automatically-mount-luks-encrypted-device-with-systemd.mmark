@@ -68,3 +68,9 @@ Unplug your device. Reload the config:
 	$ systemctl daemon-reload
 
 Replug your device.
+
+> **NB**: If you want a user other than root to have access to the drive,
+> simply run `chown -R username:group /media/storage` while the device is
+> mounted. For guest filesystems different from `ext4`, there might be
+> another (better) solution involving the `-o` flag of `mount`.
+> See https://superuser.com/q/320415/168948 for further information.
