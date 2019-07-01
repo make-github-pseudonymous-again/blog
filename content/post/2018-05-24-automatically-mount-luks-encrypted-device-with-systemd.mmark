@@ -9,6 +9,11 @@ laclaro](https://laclaro.wordpress.com/2017/11/02/mount-encrypted-disk-with-syst
 We assume your device is already encrypted with LUKS. All commands are run as
 root.
 
+> **WARNING!** Here we will name our device `storage`. Should you use another
+> name, make sure it does not conflict with existing names on the file system.
+> For example naming your device `usb` would conflict with the existing
+> `/dev/usb`, resulting in mysterious errors.
+
 Create a new key for device:
 
 	$ mkdir /root/key
