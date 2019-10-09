@@ -1,0 +1,45 @@
+---
+title: "2019 10 09 Setup Secure SSH Tunnel Account"
+date: 2019-10-09T11:55:57+02:00
+draft: true
+---
+
+Create user
+
+	useradd -m -s /sbin/nologin tunnel
+
+
+Setup `ssh`
+
+	cd /home/tunnel
+	mkdir .ssh
+	chown -R tunnel:tunnel .ssh
+	chmod 700 .ssh
+	touch .ssh/authorized_keys
+	chmod 640 .ssh/authorized_keys
+
+
+Set further restrictions if necessary. In /etc/ssh/sshd_config, add
+
+	Match User tunnel
+	        PermitOpen 1.2.3.4:22
+	        X11Forwarding no
+
+
+Add some user key
+
+	echo "some SSH key" >> .ssh/authorized_keys
+
+
+On your work station open two terminals.
+
+On the first one,
+
+	ssh tunnel@tunnelhost -L 1234:1.2.3.4:22 -N
+
+On the second,
+
+	ssh username@localhost -p 1234
+
+Replace 1234 in both commands with any unused port on your work machine and
+replace `username` with your username on 1.2.3.4.
