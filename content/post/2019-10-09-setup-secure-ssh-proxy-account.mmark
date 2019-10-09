@@ -13,9 +13,9 @@ Setup `ssh`
 
 	cd /home/proxy
 	mkdir .ssh
+	touch .ssh/authorized_keys
 	chown -R proxy:proxy .ssh
 	chmod 700 .ssh
-	touch .ssh/authorized_keys
 	chmod 640 .ssh/authorized_keys
 
 
@@ -28,6 +28,11 @@ Set further restrictions if necessary. In /etc/ssh/sshd_config, add
 Add some user key
 
 	echo "some SSH key" >> .ssh/authorized_keys
+
+
+Restart `sshd`
+
+	systemctl restart sshd
 
 
 To start a SOCKS proxy on localhost:8080, execute
