@@ -1,0 +1,15 @@
+---
+title: "2019 10 10 Backup LUKS header"
+date: 2019-10-10T17:15:54+02:00
+draft: true
+---
+
+To create a backup image
+
+	cryptsetup luksHeaderBackup /dev/<device> --header-backup-file /mnt/<backup>/<file>.img
+
+To encrypt the image with gpg
+
+	gpg2 --recipient <User ID> --encrypt /root/<tmp>/<file>.img
+
+See also https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Backup_and_restore
