@@ -1,0 +1,170 @@
+---
+title: Encrypted Install With Arch Linux on BIOS
+date: 2019-10-12
+draft: true
+---
+
+So easy!
+
+<!--more-->
+
+Follow video ...
+
+Check you are not in EFI mode
+
+	ls /sys/firmware/efi
+	/usr/bin/ls: cannot access '/sys/firmware/efi': No such file or directory
+
+Update the system clock
+
+	timedatectl set-ntp true
+
+List disks
+
+	lsblk
+
+Partition the storage device
+
+	fdisk /dev/sda
+	o
+	n
+	p
+	<enter>
+	+512MiB
+	n
+	p
+	<enter>
+	<enter>
+	p
+	w
+	y
+
+Format boot partition
+
+	mkfs.fat -F32 /dev/sda1
+
+Encrypt main partition
+
+	cryptsetup luksFormat /dev/sda2
+	YES
+	<passphrase>
+	<passphrase>
+
+Open main partition
+
+	cryptsetup open --type luks /dev/sda2 main
+	<passphrase>
+
+Partition LVM volume
+
+	pvcreate /dev/mapper/main
+	vgcreate main /dev/mapper/main
+	lvcreate -L2G main -n swap
+	lvcreate -l 100%FREE main -n root
+
+
+Format root partition
+
+	mkfs.ext4 /dev/mapper/main-root
+
+Format swap partition
+
+	mkswap /dev/mapper/main-swap
+
+Mount partitions
+
+	mount /dev/mapper/main-root /mnt
+	mkdir /mnt/boot
+	mount /dev/sda1 /mnt/boot
+	swapon /dev/mapper/main-swap
+
+Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
+
+	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant wireless_tools firefox
+	pacstrap /mnt base base-devel gvim git firefox # without WiFi
+
+Generate /etc/fstab
+
+	genfstab -p /mnt >> /mnt/etc/fstab
+
+Chroot
+
+	arch-chroot /mnt
+
+Configure time
+
+	rm /etc/localtime
+	ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+	hwclock --systohc --utc
+
+Create root password
+
+	passwd
+	<password>
+	<password>
+
+Uncomment `UTF8` and `ISO-8859-1` `en_US` lines in `/etc/locale.gen`.
+
+        # /etc/locale.gen
+        en_US.UTF-8 UTF-8
+        en_US ISO-8859-1
+
+Then
+
+	locale-gen
+	locale > /etc/locale.conf
+
+Configure the hostname
+
+	echo "hostname" > /etc/hostname
+
+Give keyboard access before mounting to type encryption password
+
+	# /etc/mkinitcpio.conf
+	HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems fsck)
+
+Regenerate initramfs
+
+	mkinitcpio -p linux
+
+Install the bootloader
+
+	bootctl --path=/boot install
+
+Create boot loader
+
+	# /boot/loader/loader.conf
+	default arch
+	timeout 3
+	editor 0
+
+Create boot loader entry
+
+	# /boot/loader/entries/arch.conf
+	title Arch Linux
+	linux /vmlinuz-linux
+	initrd /initramfs-linux.img
+	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root quiet rw
+
+Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda2`.
+
+Unmount and reboot
+
+	exit
+	cd
+	sync
+	umount -R /mnt
+	reboot
+
+Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
+
+	useradd -m -G wheel theadminusername
+	passwd theadminusername
+	<password>
+	<password>
+
+Note that the login shell can be changed with
+
+	chsh -s <shell> <username>
+
+The list of available shells is available at `less /etc/shells`.
