@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ .Title }}</title>
+	<meta charset="utf-8">
+	{{ with .Title }}<title>{{ . }}</title>{{ end }}
 	{{ partial "bootstrap.html" . }}
 	{{ partial "math.html" . }}
 </head>
