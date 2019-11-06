@@ -1,25 +1,21 @@
 ---
 title: "2019 04 23 Extend Partition and Filesystem on Adjacent Partitions"
 date: 2019-04-23T16:01:37+02:00
-draft: true
 ---
 
-1. boot on live USB
-##
+## 1. boot on live USB
 
-2. mount
-##
+## 2. mount
 
-3. backup
-##
+## 3. backup
 
-4. umount
-##
+And also backup partition information of `fdisk -l /dev/sdX`.
 
-5. delete both partitions
-##
+## 4. umount
 
-To delete /dev/sdXY run
+## 5. delete both partitions
+
+To delete `/dev/sdXY` run
 
 	fdisk /dev/sdX
 	d
@@ -27,8 +23,7 @@ To delete /dev/sdXY run
 	p # to check
 	w
 
-6. create new partition
-##
+## 6. create new partition
 
 Use same type and same first block as before
 
@@ -39,8 +34,7 @@ Use same type and same first block as before
 	p
 	w
 
-7. check filesystem
-##
+## 7. check filesystem
 
 Run `e2fsck`
 
@@ -51,12 +45,10 @@ Run `e2fsck`
 	y
 	...
 
-8. resize
-##
+## 8. resize
 
 	resize2fs /dev/sdXY
 
-9. reboot
-##
+## 9. reboot
 
 The UUID should not have changed so no need to fix `/etc/fstab`.

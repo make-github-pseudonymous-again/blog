@@ -1,7 +1,6 @@
 ---
 title: "2019 10 09 Setup Secure SSH Tunnel Account"
 date: 2019-10-09T11:55:57+02:00
-draft: true
 ---
 
 Create user
@@ -19,10 +18,10 @@ Setup `ssh`
 	chmod 640 .ssh/authorized_keys
 
 
-Set further restrictions if necessary. In /etc/ssh/sshd_config, add
+Set further restrictions if necessary. In `/etc/ssh/sshd_config`, add
 
 	Match User tunnel
-	        PermitOpen 1.2.3.4:22
+	        PermitOpen 5.6.7.8:22
 	        X11Forwarding no
 
 
@@ -40,11 +39,11 @@ On your work station open two terminals.
 
 On the first one,
 
-	ssh tunnel@tunnelhost -L 1234:1.2.3.4:22 -N
+	ssh tunnel@tunnelhost -L 1234:5.6.7.8:22 -N
 
 On the second,
 
 	ssh username@localhost -p 1234
 
 Replace 1234 in both commands with any unused port on your work machine and
-replace `username` with your username on 1.2.3.4.
+replace `username` with your username on 5.6.7.8.

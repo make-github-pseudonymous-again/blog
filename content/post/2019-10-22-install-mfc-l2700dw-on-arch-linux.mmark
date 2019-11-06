@@ -1,7 +1,6 @@
 ---
 title: "Install Brother printer and scanner MFC-L2700DW on Arch Linux"
 date: 2019-10-22T17:23:03+02:00
-draft: true
 ---
 
 Install `sane`
@@ -19,6 +18,9 @@ Config the scanner functionality, by IP,
 or by host name
 
 	brsaneconfig4 -a name=<CHOSEN NAME> model=MFC-L2700DW nodename=<HOSTNAME>
+
+In CUPS (localhost:631), configure new printer with IPP/driverless and
+driverless CUPS driver.
 
 ## Test
 

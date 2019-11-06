@@ -1,7 +1,6 @@
 ---
 title: "2019 10 10 Backup LUKS header"
 date: 2019-10-10T17:15:54+02:00
-draft: true
 ---
 
 Create a directory only accessible by root with a `ramfs`

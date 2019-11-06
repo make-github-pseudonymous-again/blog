@@ -1,7 +1,6 @@
 ---
 title: "2018 05 24 Automatically Mount Luks Encrypted Device With Systemd"
 date: 2018-05-24T17:27:54+02:00
-draft: true
 ---
 Following the [good advice of
 laclaro](https://laclaro.wordpress.com/2017/11/02/mount-encrypted-disk-with-systemd).

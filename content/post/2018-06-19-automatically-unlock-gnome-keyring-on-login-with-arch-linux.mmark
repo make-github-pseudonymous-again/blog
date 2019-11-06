@@ -1,7 +1,6 @@
 ---
 title: "2018 06 19 Automatically Unlock Gnome Keyring on Login With Arch Linux"
 date: 2018-06-19T12:44:02+02:00
-draft: true
 ---
 
 Install `gnome-keyring`, `libsecret`, and `seahorse`.
@@ -28,6 +27,8 @@ end of the session section.
 	session    optional     pam_gnome_keyring.so auto_start
 
 Reboot.
+
+## TODO
 
 Add instructions on how to add gnupg keys to the keyring.
 

@@ -1,7 +1,6 @@
 ---
 title: "2019 10 09 Setup Secure SSH Proxy Account"
 date: 2019-10-09T11:55:57+02:00
-draft: true
 ---
 
 Create user
@@ -19,7 +18,7 @@ Setup `ssh`
 	chmod 640 .ssh/authorized_keys
 
 
-Set further restrictions if necessary. In /etc/ssh/sshd_config, add
+Set further restrictions if necessary. In `/etc/ssh/sshd_config`, add
 
 	Match User proxy
 	        X11Forwarding no
@@ -35,7 +34,7 @@ Restart `sshd`
 	systemctl restart sshd
 
 
-To start a SOCKS proxy on localhost:8080, execute
+To start a SOCKSv5 proxy on localhost:8080, execute
 
 	ssh -D 8080 proxy@proxyhost -N
 
