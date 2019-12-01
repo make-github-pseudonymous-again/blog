@@ -86,13 +86,40 @@ swap ~ Enabled`)
 
 Use custom keymap to swap caps lock and enter
 
+## Lid and Power Button
+
+	# vim /etc/systemd/logind.conf
+	[Login]
+	...
+	HandlePowerKey=suspend
+	HandleSuspendKey=suspend
+	HandleHibernateKey=suspend
+	HandleLidSwitch=suspend
+	HandleLidSwitchExternalPower=suspend
+	HandleLidSwitchDocked=ignore
+	...
+
 ## WiFi
 
 ## Bluetooth
 
-## Trackpad
+## Trackpoint
+
+## Touchpad
+
+	pacman -S xorg-xinput
 
 ### Sensitivity
+
+https://www.reddit.com/r/linuxquestions/comments/45hhep/multiple_mice_how_do_i_change_just_ones/
+
+	# /etc/X11/xorg.conf.d/50-trackpad.conf
+	Section "InputClass"
+	  Identifier     "Touchpad Speed"
+	  MatchProduct   "Touchpad"
+	  Option         "Accel Speed" "1.00"
+	EndSection
+
 
 ## Touch Screen and Stylus
 
