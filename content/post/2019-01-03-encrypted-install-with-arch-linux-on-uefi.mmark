@@ -54,7 +54,7 @@ Encrypt main partition
 
 Open main partition
 
-	cryptsetup open --type luks /dev/sda2 main
+	cryptsetup luksOpen /dev/sda2 main
 	<passphrase>
 
 Partition LVM volume
@@ -82,8 +82,8 @@ Mount partitions
 
 Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
 
-	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant wireless_tools firefox
-	pacstrap /mnt base base-devel gvim git firefox # without WiFi
+	pacstrap /mnt mkinitcpio linux linux-firmware lvm2 base base-devel dhcpcd netctl iw dialog wpa_supplicant wireless_tools vi gvim git firefox
+	pacstrap /mnt mkinitcpio linux linux-firmware lvm2 base base-devel dhcpcd vi gvim git firefox # without WiFi
 
 Generate /etc/fstab
 
@@ -107,9 +107,9 @@ Create root password
 
 Uncomment `UTF8` and `ISO-8859-1` `en_US` lines in `/etc/locale.gen`.
 
-        # /etc/locale.gen
-        en_US.UTF-8 UTF-8
-        en_US ISO-8859-1
+	# /etc/locale.gen
+	en_US.UTF-8 UTF-8
+	en_US ISO-8859-1
 
 Then
 
@@ -125,6 +125,12 @@ Give keyboard access before mounting to type encryption password
 	# /etc/mkinitcpio.conf
 	HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems fsck)
 
+Optionally throw in some `consolefont` and `keymap` hooks if you plan to
+customize them.
+
+	# /etc/mkinitcpio.conf
+	HOOKS=(base udev autodetect modconf block consolefont keymap keyboard encrypt lvm2 filesystems fsck)
+
 Regenerate initramfs
 
 	mkinitcpio -p linux
@@ -139,6 +145,7 @@ Create boot loader
 	default arch
 	timeout 3
 	editor 0
+	console-mode auto
 
 Create boot loader entry
 
