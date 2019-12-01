@@ -97,6 +97,7 @@ Use custom keymap to swap caps lock and enter
 	HandleLidSwitch=suspend
 	HandleLidSwitchExternalPower=suspend
 	HandleLidSwitchDocked=ignore
+	HoldoffTimeoutSec=15s
 	...
 
 ## WiFi
@@ -113,11 +114,12 @@ Use custom keymap to swap caps lock and enter
 
 https://www.reddit.com/r/linuxquestions/comments/45hhep/multiple_mice_how_do_i_change_just_ones/
 
-	# /etc/X11/xorg.conf.d/50-trackpad.conf
+	# /etc/X11/xorg.conf.d/50-touchpad.conf
 	Section "InputClass"
 	  Identifier     "Touchpad Speed"
 	  MatchProduct   "Touchpad"
 	  Option         "Accel Speed" "1.00"
+	  Option         "Tapping" "1"
 	EndSection
 
 
@@ -137,6 +139,12 @@ Install `xf86-input-wacom`.
 
 fwupd: https://wiki.archlinux.org/index.php/Fwupd
 
+## UI
+
+### i3
+
+	# resize large floating windows
+	for_window [window_role="GtkFileChooserDialog"] resize set 1920 1440
 
 ## See also
 
