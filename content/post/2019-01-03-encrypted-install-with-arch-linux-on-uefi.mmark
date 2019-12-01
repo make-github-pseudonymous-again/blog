@@ -146,6 +146,7 @@ Create boot loader
 	timeout 3
 	editor 0
 	console-mode auto
+	# console-mode max
 
 Create boot loader entry
 
@@ -153,7 +154,7 @@ Create boot loader entry
 	title Arch Linux
 	linux /vmlinuz-linux
 	initrd /initramfs-linux.img
-	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root quiet rw
+	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root rw
 
 Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda2`.
 

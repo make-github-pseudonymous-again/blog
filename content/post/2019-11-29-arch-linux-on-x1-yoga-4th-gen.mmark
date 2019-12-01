@@ -1,0 +1,118 @@
+---
+title: Arch Linux on X1 Yoga 4th Gen
+date: 2019-11-29T23:11:53+01:00
+draft: true
+---
+
+This guide will walk you through installing Arch Linux on a Lenovo Thinkpad X1
+Yoga 4th Gen.
+
+# Install
+
+Fire up the machine then
+
+	F1 (Firmware Settings)
+
+	UEFI BIOS Version N2HET40W (1.23)
+	UEFI BIOS Date 2019-10-17
+	Embedded Controller Version N2HHT27W (1.10)
+	ME Firmware Version 12.0.47.1524
+	Machine Type Model 20QGS12C00
+
+	CPU Type i7-8665U
+	Installed memory 16384MB
+
+	Config > Setup UI ~ Simple Text
+
+	Security > Secure Boot > Disable Secure Boot (toggle switch)
+
+	Security > Password ~ Define passwords and enable all
+
+	Security > Fingerprint ~ Reset Data and Disable
+
+	Security > Internal Device Access ~ Activate tamper detection
+
+	Restart > OS Optimized Defaults ~ Disabled
+
+	Startup > Network Boot ~ NVMe0
+
+	Startup > Option key Display ~ Disabled
+
+	? Config > Network > Wake On LAN ~ Disable
+	? Config > Network > Wake On LAN from Dock ~ Disable
+	Config > Network > Lenovo Cloud Services ~ Disable
+	Config > Power > Sleep State ~ Linux
+	Config > Beep and Alarm > Password beep ~ Disable
+	Config > Beep and Alarm > Keyboard beep ~ Disable
+	Config > USB > Always On USB ~ Disable
+
+	Date/Time ~ Set correct date and time
+
+	F10 (Save and Exit)
+
+With LiveUSB plugged in
+
+	F12 > Select USB key to boot
+
+Use better font
+
+	setfont latarcyrheb-sun32
+
+Follow install guide
+
+	...
+
+# Customize
+
+## Display
+
+Install `vulkan-intel` driver (see [reports](https://vulkan.gpuinfo.org/listreports.php?devicename=Intel(R)%20HD%20Graphics%20620
+))
+
+	pacman -S mesa vulkan-intel
+
+Nice setting for boot loader `console-mode max`.
+
+Nice font for vconsole `latarcyrheb-sun32` or `ter-132n` (need install).
+
+NO need to put `i915` in MODULES in `/etc/mkinitcpio.conf`.
+
+Nice PPI setting: `Xft.dpi: 192` in `.Xresources`.
+
+## Keyboard
+
+Use firmware to swap fn and ctrl (`Config > Keyboard/Mouse > Fn and Ctrl Key
+swap ~ Enabled`)
+
+Use custom keymap to swap caps lock and enter
+
+## WiFi
+
+## Bluetooth
+
+## Trackpad
+
+### Sensitivity
+
+## Touch Screen and Stylus
+
+Install `xf86-input-wacom`.
+
+## Fingerprint Reader
+
+## Camera
+
+## Microphone
+
+## Speakers
+
+## Firmware Updates
+
+fwupd: https://wiki.archlinux.org/index.php/Fwupd
+
+
+## See also
+
+[Arch wiki link](https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Yoga_(Gen_4)).
+
+Also very similar to: https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_7)

@@ -1,0 +1,8 @@
+---
+title: "2019 11 30 Automatically Create Ssh Tunnels"
+date: 2019-11-30T00:29:10+01:00
+draft: true
+---
+
+
+Use autossh and a systemd service...
