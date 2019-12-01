@@ -30,3 +30,27 @@ Put the `keymap` hook before the `keyboard` hook in `/etc/mkinitcpio.conf`
     ...
     HOOKS="base udev autodetect modconf block keymap keyboard encrypt filesystems fsck"
     ...
+
+## I want my own keymap
+
+Create your own keymap directory
+
+	mkdir -p /usr/local/share/kbd/keymaps
+	cd /usr/local/share/kbd/keymaps
+
+Copy an existing keymap you want to customize
+
+	cp /usr/share/kbd/keymaps/i386/qwerty/us.map.gz personal.map.gz
+	gunzip personal.map.gz
+
+Edit `/usr/local/share/kbd/keymaps/personal.map`
+
+Point to it in `/etc/vconsole.conf`
+
+	# /etc/vconsole.conf
+	KEYMAP=/usr/local/share/kbd/keymaps/personal.map
+
+See also:
+
+  - [Arch Wiki instructions](https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console#Persistent_configuration)
+  - [Some random website](https://wiki.parabola.nu/KEYMAP)
