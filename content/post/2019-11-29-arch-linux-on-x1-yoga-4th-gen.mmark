@@ -151,6 +151,42 @@ To update firmware
 
 See the [wiki](https://wiki.archlinux.org/index.php/Fwupd) for more.
 
+## Automatic screen layout switching
+
+> **TODO** Resolution is wrong when switching back to `default` via `autorandr
+> --batch --change`.
+
+Install and configure `autorandr`
+
+	pacman -S autorandr
+	... # undock and configure undocked layout
+	autorandr --save default
+	... # dock and configure docked layout
+	autorandr --save docked
+
+Setup udev rule
+
+	# /etc/udev/rules.d/50-dock.rules
+	ACTION=="change", BUS="usb", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="3082", NAME="dock", RUN="autorandr --batch --change"
+
+Note that I used device `17ef:3082` but it could be any of
+
+	Bus 006 Device 004: ID 17ef:3082 Lenovo
+	Bus 006 Device 003: ID 17ef:307f Lenovo USB3.1 Hub
+	Bus 006 Device 002: ID 17ef:307f Lenovo USB3.1 Hub
+	Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 005 Device 007: ID 2109:8818 VIA Labs, Inc.
+	Bus 005 Device 010: ID 2109:8818 VIA Labs, Inc.
+	Bus 005 Device 009: ID 17ef:3083 Lenovo
+	Bus 005 Device 006: ID 17ef:3081 Lenovo
+	Bus 005 Device 003: ID 17ef:3080 Lenovo
+	Bus 005 Device 002: ID 17ef:3080 Lenovo USB2.0 Hub
+	Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Reload rules.
+
+	udevadm control --reload-rules
+
 ## UI
 
 ### i3
