@@ -143,11 +143,11 @@ fwupd: https://wiki.archlinux.org/index.php/Fwupd
 
 To update DB
 
-	fwupd refresh
+	fwupdmgr refresh
 
 To update firmware
 
-	fwupd update
+	fwupdmgr update
 
 See the [wiki](https://wiki.archlinux.org/index.php/Fwupd) for more.
 
