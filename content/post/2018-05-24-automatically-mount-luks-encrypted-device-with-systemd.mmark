@@ -1,5 +1,5 @@
 ---
-title: "2018 05 24 Automatically Mount Luks Encrypted Device With Systemd"
+title: "Automatically Mount Luks Encrypted Device With Systemd"
 date: 2018-05-24T17:27:54+02:00
 ---
 Following the [good advice of
