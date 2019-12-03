@@ -10,9 +10,9 @@ Setup a `udev` rule to trigger when docking/undocking.
 
 	# /etc/udev/rules.d/50-dock.rules
 
-	ACTION=="change", BUS="usb", SYSFS{serial}="<serial-number>", NAME="dock", RUN="autorandr --batch --change"
+	ACTION=="change", BUS="usb", ATTRS{idVendor}=="<idVendor>", ATTRS{idProduct}=="<idProduct>", NAME="dock", RUN="autorandr --batch --change"
 
-The dock serial can be found via `lsusb`.
+The dock id's can be found via `lsusb`.
 
 	lsusb
 
