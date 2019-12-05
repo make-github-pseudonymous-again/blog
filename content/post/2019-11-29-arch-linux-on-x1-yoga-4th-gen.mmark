@@ -73,11 +73,11 @@ Install `vulkan-intel` driver (see [reports](https://vulkan.gpuinfo.org/listrepo
 
 Nice setting for boot loader `console-mode max`.
 
-Nice font for vconsole `latarcyrheb-sun32` or `ter-132n` (need install).
+Nice font for vconsole `latarcyrheb-sun32` or `ter-132n` (need install `terminus-font`).
 
 NO need to put `i915` in MODULES in `/etc/mkinitcpio.conf`.
 
-Nice PPI setting: `Xft.dpi: 192` in `.Xresources`.
+Nice PPI setting: `Xft.dpi: 216` (`192` is OK but small) in `.Xresources` (at max res `3840x2160`).
 
 ## Keyboard
 
@@ -103,6 +103,30 @@ Use custom keymap to swap caps lock and enter
 ## WiFi
 
 ## Bluetooth
+
+Install software
+
+	pacman -S bluez bluez-utils
+
+If you want bluetooth to power on the chip as soon as `bluetooth.service` is
+running
+
+	/etc/bluetooth/main.conf
+
+	[Policy]
+	AutoEnable=true
+
+Enable and start the bluetooth service
+
+	systemctl enable --now bluetooth
+
+### Headset
+
+	pacman -S pulseaudio-bluetooth
+	systemctl --user restart pulseaudio
+
+For more, see https://wiki.archlinux.org/index.php/Bluetooth_headset
+
 
 ## Trackpoint
 
@@ -134,6 +158,8 @@ Install `xf86-input-wacom`.
 ## Microphone
 
 ## Speakers
+
+See [the wiki](https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Yoga_(Gen_4)#Audio).
 
 ## Firmware Updates
 
@@ -192,7 +218,30 @@ Reload rules.
 ### i3
 
 	# resize large floating windows
-	for_window [window_role="GtkFileChooserDialog"] resize set 1920 1440
+	for_window [window_role="GtkFileChooserDialog"] resize set 1920 1440 # 4K
+	for_window [window_role="GtkFileChooserDialog"] resize set 1440 960  # 2.5K
+
+## Troubleshooting
+
+### External screens and autodock
+
+If using external screens via dock, `autorandr`, and `udev` rules,
+use compatible resolution, e.g. `2560x1440` with `Xft.dpi: 144`.
+
+Undocking does not properly roll back to the max resolution `3840x2160` (maybe
+because `autorandr` is called from outside X session? bug?).
+
+Then configure various resolutions with `autorandr` then create a file
+`/etc/X11/xinit/xinitrc.d/10-autorandr.sh` with the following contents
+
+    #!/bin/sh
+    [ -x /usr/bin/autorandr ] && /usr/bin/autorandr --change
+
+And make it executable
+
+    chmod a+x /etc/X11/xinit/xinitrc.d/10-autorandr.sh
+
+See [this gist](https://github.com/aureooms/dotfiles/wiki/Make-xrandr-config-permanent/f7ee1481951102e1d499e9d5c2b716568a893626).
 
 ## See also
 
