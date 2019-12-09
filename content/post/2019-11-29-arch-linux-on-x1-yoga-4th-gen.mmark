@@ -84,7 +84,8 @@ Nice PPI setting: `Xft.dpi: 216` (`192` is OK but small) in `.Xresources` (at ma
 Use firmware to swap fn and ctrl (`Config > Keyboard/Mouse > Fn and Ctrl Key
 swap ~ Enabled`)
 
-Use custom keymap to swap caps lock and enter
+Use custom keymap to swap caps lock and enter. See [the
+wiki](https://wiki.archlinux.org/index.php/Linux_console/Keyboard_configuration#Creating_a_custom_keymap).
 
 ## Lid and Power Button
 
@@ -101,6 +102,10 @@ Use custom keymap to swap caps lock and enter
 	...
 
 ## WiFi
+
+Works out of the box with
+
+	pacman -S dhcpcd netctl iw dialog wpa_supplicant wireless_tools
 
 ## Bluetooth
 
@@ -130,11 +135,13 @@ For more, see https://wiki.archlinux.org/index.php/Bluetooth_headset
 
 ## Trackpoint
 
+Works out of the box.
+
 ## Touchpad
 
 	pacman -S xorg-xinput
 
-### Sensitivity
+### Adjust Sensitivity and Enable Tapping
 
 https://www.reddit.com/r/linuxquestions/comments/45hhep/multiple_mice_how_do_i_change_just_ones/
 
@@ -149,13 +156,21 @@ https://www.reddit.com/r/linuxquestions/comments/45hhep/multiple_mice_how_do_i_c
 
 ## Touch Screen and Stylus
 
-Install `xf86-input-wacom`.
+Works out of the box with
+
+	pacman -S xf86-input-wacom
 
 ## Fingerprint Reader
 
+?
+
 ## Camera
 
+?
+
 ## Microphone
+
+?
 
 ## Speakers
 
@@ -170,6 +185,10 @@ fwupd: https://wiki.archlinux.org/index.php/Fwupd
 To update DB
 
 	fwupdmgr refresh
+
+To check what updates are available
+
+	fwupdmgr get-updates
 
 To update firmware
 
@@ -213,6 +232,15 @@ Reload rules.
 
 	udevadm control --reload-rules
 
+> *TODO* xrandr seems to be triggered by something else. Auto config switching
+> still works after disabling `udev` rule. I am truly puzzled.
+
+
+## Tablet mode
+
+See [this other post](/2019/12/09/detect-x1-yoga-tablet-mode-on-arch-linux).
+
+
 ## UI
 
 ### i3
@@ -242,6 +270,54 @@ And make it executable
     chmod a+x /etc/X11/xinit/xinitrc.d/10-autorandr.sh
 
 See [this gist](https://github.com/aureooms/dotfiles/wiki/Make-xrandr-config-permanent/f7ee1481951102e1d499e9d5c2b716568a893626).
+
+## Mysteries
+
+### Detect stylus is docked
+
+?
+
+## Sensors
+
+	cat /sys/bus/iio/devices/iio:device*/name
+	gyro_3d
+	accel_3d
+
+https://www.instructables.com/id/Accelerometer-Gyro-Tutorial
+
+`accel_3d` measures orientation
+`gyro_3d` measures orientation change
+
+## Libinput events
+
+	libinput debug-events
+	-event2   DEVICE_ADDED     Power Button                      seat0 default group1  cap:k
+	-event12  DEVICE_ADDED     Video Bus                         seat0 default group2  cap:k
+	-event1   DEVICE_ADDED     Lid Switch                        seat0 default group3  cap:S
+	-event0   DEVICE_ADDED     Sleep Button                      seat0 default group4  cap:k
+	-event4   DEVICE_ADDED     Wacom Pen and multitouch sensor Finger seat0 default group5  cap:t  size 309x174mm ntouches 10 calib
+	-event7   DEVICE_ADDED     Wacom Pen and multitouch sensor Pen seat0 default group5  cap:T  size 309x174mm calib
+	-event10  DEVICE_ADDED     Integrated Camera: Integrated C   seat0 default group6  cap:k
+	-event11  DEVICE_ADDED     Integrated Camera: Integrated I   seat0 default group6  cap:k
+	-event5   DEVICE_ADDED     SYNA8004:00 06CB:CD8B Touchpad    seat0 default group7  cap:pg  size 97x53mm tap(dl off) left scroll-nat scroll-2fg-edge click-buttonareas-clickfinger dwt-on
+	-event14  DEVICE_ADDED     HDA Intel PCH Mic                 seat0 default group8  cap:
+	-event15  DEVICE_ADDED     HDA Intel PCH Headphone           seat0 default group8  cap:
+	-event16  DEVICE_ADDED     HDA Intel PCH HDMI/DP,pcm=3       seat0 default group8  cap:
+	-event17  DEVICE_ADDED     HDA Intel PCH HDMI/DP,pcm=7       seat0 default group8  cap:
+	-event18  DEVICE_ADDED     HDA Intel PCH HDMI/DP,pcm=8       seat0 default group8  cap:
+	-event19  DEVICE_ADDED     HDA Intel PCH HDMI/DP,pcm=9       seat0 default group8  cap:
+	-event20  DEVICE_ADDED     HDA Intel PCH HDMI/DP,pcm=10      seat0 default group8  cap:
+	-event3   DEVICE_ADDED     AT Translated Set 2 keyboard      seat0 default group9  cap:k
+	-event6   DEVICE_ADDED     TPPS/2 ALPS TrackPoint            seat0 default group10 cap:p left scroll-nat scroll-button
+	-event9   DEVICE_ADDED     ThinkPad Extra Buttons            seat0 default group11 cap:kS
+
+	# move stylus close to screen
+	-event7   TABLET_TOOL_PROXIMITY +40.30s		271.40*/124.25*	tilt: 0.00*/0.00*	pressure: 0.00*	pen (0x????????, id 0x??) proximity-in 	axes:pt	btn:SS2
+	 event7   TABLET_TOOL_PROXIMITY +40.76s		276.00/119.19	tilt: 0.00/0.00 pressure: 0.00	pen (0x????????, id 0x??) proximity-out
+
+	# toggle table-mode by rotating screen beyong 180 deg
+	-event9   SWITCH_TOGGLE    +59.14s	switch tablet-mode state 1
+	 event9   SWITCH_TOGGLE    +65.44s	switch tablet-mode state 0
 
 ## See also
 
