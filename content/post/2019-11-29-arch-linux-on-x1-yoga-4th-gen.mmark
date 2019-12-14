@@ -176,6 +176,19 @@ Works out of the box with
 
 See [the wiki](https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Yoga_(Gen_4)#Audio).
 
+## Beeper
+
+To disable temporarily
+
+	modprobe -r pcspkr
+
+To disable permanently add
+
+	# /etc/modprobe.d/blacklist
+	blacklist pcspkr
+
+See also https://www.thinkwiki.org/wiki/How_to_disable_the_pc_speaker_(beep!)
+
 ## Firmware Updates
 
 fwupd: https://wiki.archlinux.org/index.php/Fwupd
