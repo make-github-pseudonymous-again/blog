@@ -184,10 +184,13 @@ To disable temporarily
 
 To disable permanently add
 
-	# /etc/modprobe.d/blacklist
+	# /etc/modprobe.d/nobeep.conf
 	blacklist pcspkr
 
-See also https://www.thinkwiki.org/wiki/How_to_disable_the_pc_speaker_(beep!)
+See also
+https://www.thinkwiki.org/wiki/How_to_disable_the_pc_speaker_(beep!)
+and
+https://wiki.archlinux.org/index.php/Kernel_module#Blacklisting
 
 ## Firmware Updates
 
