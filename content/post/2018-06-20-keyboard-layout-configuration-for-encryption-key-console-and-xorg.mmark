@@ -14,6 +14,31 @@ Setup your keymap using `setxkbmap` when launching `X`, for instance in `.xprofi
 
     # ~/.xprofile
     setxkbmap be
+    setxkbmap -option caps:swapescape
+
+A more robust solution (wireless keyboard plug-n-play ...) is to run the following
+
+    localectl --no-convert set-x11-keymap be '' '' caps:swapescape
+
+It will create a file located at `/etc/X11/xorg.conf.d/00-keyboard.conf`
+
+    # Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+    # probably wise not to edit this file manually. Use localectl(1) to
+    # instruct systemd-localed to update it.
+    Section "InputClass"
+            Identifier "system-keyboard"
+            MatchIsKeyboard "on"
+            Option "XkbLayout" "be"
+            Option "XkbOptions" "caps:swapescape"
+    EndSection
+
+The option `--no-convert` inhibits the default behaviour of `localectl` which
+consists in trying to match the `vconsole` keymap configuration with the `X11` keymap
+configuration. This default behaviour should work well with vendor keymaps but
+is not needed if you do a manual setup of the virtual console
+(see #something)
+and is unlikely to work for custom ones
+(see #i_want_my_own_keymap).
 
 ## My keyboard layout is not setup for the virtual console
 
