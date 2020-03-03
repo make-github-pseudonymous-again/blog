@@ -26,14 +26,21 @@ List disks
 
 Partition the storage device
 
-	fdisk /dev/sda
+	gdisk /dev/sda
 	o
 	n
-	p
 	<enter>
-	+512MiB
+	<enter>
+	+8M
+	ef02
 	n
-	p
+	<enter>
+	<enter>
+	+2G
+	<enter>
+	n
+	<enter>
+	<enter>
 	<enter>
 	<enter>
 	p
@@ -42,18 +49,18 @@ Partition the storage device
 
 Format boot partition
 
-	mkfs.fat -F32 /dev/sda1
+	mkfs.ext4 /dev/sda2
 
 Encrypt main partition
 
-	cryptsetup luksFormat /dev/sda2
+	cryptsetup luksFormat /dev/sda3
 	YES
 	<passphrase>
 	<passphrase>
 
 Open main partition
 
-	cryptsetup open --type luks /dev/sda2 main
+	cryptsetup luksOpen /dev/sda3 main
 	<passphrase>
 
 Partition LVM volume
@@ -76,13 +83,13 @@ Mount partitions
 
 	mount /dev/mapper/main-root /mnt
 	mkdir /mnt/boot
-	mount /dev/sda1 /mnt/boot
+	mount /dev/sda2 /mnt/boot
 	swapon /dev/mapper/main-swap
 
 Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
 
-	pacstrap /mnt base base-devel gvim git netctl iw dialog wpa_supplicant wireless_tools firefox
-	pacstrap /mnt base base-devel gvim git firefox # without WiFi
+	pacstrap /mnt mkinitcpio linux linux-firmware lvm2 base base-devel dhcpcd netctl iw dialog wpa_supplicant wireless_tools vi gvim git firefox
+	pacstrap /mnt mkinitcpio linux linux-firmware lvm2 base base-devel dhcpcd vi gvim git firefox # without WiFi
 
 Generate /etc/fstab
 
@@ -128,26 +135,23 @@ Regenerate initramfs
 
 	mkinitcpio -p linux
 
-Install the bootloader
+Install the bootloader (`grub`)
 
-	bootctl --path=/boot install
+	pacman -S grub
 
-Create boot loader
+Edit grub's defaults
 
-	# /boot/loader/loader.conf
-	default arch
-	timeout 3
-	editor 0
+	# /etc/default/grub
+	...
+	GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root rw"
+	...
 
-Create boot loader entry
+Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda3`.
 
-	# /boot/loader/entries/arch.conf
-	title Arch Linux
-	linux /vmlinuz-linux
-	initrd /initramfs-linux.img
-	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root quiet rw
+Install and generate grub's config
 
-Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda2`.
+	grub-install --target=i386-pc /dev/sda
+	grub-mkconfig -o /boot/grub/grub.cfg
 
 Unmount and reboot
 
