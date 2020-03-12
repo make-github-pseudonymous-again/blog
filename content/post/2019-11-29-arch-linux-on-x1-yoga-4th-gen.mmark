@@ -79,6 +79,17 @@ NO need to put `i915` in MODULES in `/etc/mkinitcpio.conf`.
 
 Nice PPI setting: `Xft.dpi: 216` (`192` is OK but small) in `.Xresources` (at max res `3840x2160`).
 
+## Sound
+
+Add the `snd_hda_intel.dmic_detect=0` to kernel options
+
+	title Arch Linux with Sound Fix
+	linux /vmlinuz-linux
+	initrd /initramfs-linux.img
+	options cryptdevice=UUID=<...>:main root=/dev/mapper/main-root rw snd_hda_intel.dmic_detect=0
+
+See https://bugs.archlinux.org/task/64720
+
 ## Keyboard
 
 Use firmware to swap fn and ctrl (`Config > Keyboard/Mouse > Fn and Ctrl Key
