@@ -11,6 +11,10 @@ List disks
 
 	lsblk
 
+Wipe first few bytes to avoid some unfortunate misbehaviours
+
+	dd if=/dev/zero of=/dev/sdx bs=512 count=10
+
 Create a single partition on the storage device
 
 	gdisk /dev/sdx
