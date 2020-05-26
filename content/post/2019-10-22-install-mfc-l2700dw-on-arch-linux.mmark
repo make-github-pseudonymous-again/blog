@@ -19,8 +19,8 @@ or by host name
 
 	brsaneconfig4 -a name=<CHOSEN NAME> model=MFC-L2700DW nodename=<HOSTNAME>
 
-In CUPS (localhost:631), configure new printer with IPP/driverless and
-driverless CUPS driver.
+In CUPS (localhost:631), configure new printer with IPP (by IP works best with
+`ipp://<IP ADDRESS>:631/ipp/print`) and "MFC-L2700DW - IPP Everywhere" CUPS driver.
 
 ## Test
 
