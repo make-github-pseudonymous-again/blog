@@ -28,6 +28,7 @@ Partition the storage device
 
 	gdisk /dev/sda
 	o
+	y
 	n
 	<enter>
 	<enter>
@@ -130,6 +131,12 @@ Give keyboard access before mounting to type encryption password
 
 	# /etc/mkinitcpio.conf
 	HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems fsck)
+
+Optionally throw in some `consolefont` and `keymap` hooks if you plan to
+customize them.
+
+	# /etc/mkinitcpio.conf
+	HOOKS=(base udev autodetect modconf block consolefont keymap keyboard encrypt lvm2 filesystems fsck)
 
 Regenerate initramfs
 
