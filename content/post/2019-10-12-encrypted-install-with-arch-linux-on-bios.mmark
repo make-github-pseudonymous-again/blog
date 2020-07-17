@@ -114,9 +114,9 @@ Create root password
 
 Uncomment `UTF8` and `ISO-8859-1` `en_US` lines in `/etc/locale.gen`.
 
-        # /etc/locale.gen
-        en_US.UTF-8 UTF-8
-        en_US ISO-8859-1
+	# /etc/locale.gen
+	en_US.UTF-8 UTF-8
+	en_US ISO-8859-1
 
 Then
 
