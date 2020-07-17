@@ -168,12 +168,16 @@ Unmount and reboot
 	umount -R /mnt
 	reboot
 
-Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
+Create an admin user
 
 	useradd -m -G wheel theadminusername
 	passwd theadminusername
 	<password>
 	<password>
+
+Uncomment the appropriate `%wheel` line via `visudo`.
+
+	%wheel ALL=(ALL) ALL
 
 Note that the login shell can be changed with
 
