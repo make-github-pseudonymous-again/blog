@@ -1,7 +1,16 @@
 ---
 title: "Elementary Os 5.0 on HP spectre X360"
 date: 2019-01-20T00:00:00+01:00
+tags:
+  - GNU/Linux Install
+  - Elementary OS
+  - HP spectre X360
+  - UEFI
 ---
+
+Works well.
+
+<!--more-->
 
 plug usb
 

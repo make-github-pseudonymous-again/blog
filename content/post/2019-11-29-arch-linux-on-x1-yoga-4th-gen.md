@@ -1,11 +1,19 @@
 ---
 title: Arch Linux on X1 Yoga 4th Gen
 date: 2019-11-29T23:11:53+01:00
-draft: true
+tags:
+  - GNU/Linux Install
+  - Arch
+  - X1 Yoga 4th Gen
+  - UEFI
+  - udev
+  - systemd
 ---
 
 This guide will walk you through installing Arch Linux on a Lenovo Thinkpad X1
 Yoga 4th Gen.
+
+<!--more-->
 
 # Install
 

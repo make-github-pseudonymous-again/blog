@@ -1,6 +1,9 @@
 ---
 title: Format Storage Device Linux
 date: 2019-01-02T23:58:47+01:00
+tags:
+  - Format
+  - Storage
 ---
 
 Very handy!

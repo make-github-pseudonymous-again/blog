@@ -1,6 +1,10 @@
 ---
 title: LUKS encrypted storage device.
 date: 2019-04-08T00:00:00+01:00
+tags:
+  - LUKS
+  - Security
+  - Encryption
 ---
 
 So easy to encrypt a USB key, or external or internal drive!

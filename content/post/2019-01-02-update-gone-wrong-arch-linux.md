@@ -1,6 +1,8 @@
 ---
 title: Update Gone Wrong Arch Linux
 date: 2019-01-02T23:05:01+01:00
+tags:
+  - Arch
 ---
 
 This will likely mess up your system even more...

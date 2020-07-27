@@ -1,8 +1,14 @@
 ---
 title: "Automatically Change Screen Layout when Docked"
 date: 2019-12-03T00:50:33+01:00
-draft: true
+tags:
+  - Automation
+  - udev
 ---
+
+Layout settings can be automated depending on connected monitors.
+
+<!--more-->
 
 Install [`autorandr`](https://github.com/phillipberndt/autorandr) and configure it for the relevant users.
 

@@ -1,9 +1,19 @@
 ---
-title: "Automatically Mount Luks Encrypted Device With Systemd"
+title: "Automatically Mount LUKS Encrypted Device With Systemd"
 date: 2018-05-24T17:27:54+02:00
+tags:
+  - Automation
+  - LUKS
+  - Security
+  - Encryption
+  - udev
+  - systemd
 ---
+
 Following the [good advice of
 laclaro](https://laclaro.wordpress.com/2017/11/02/mount-encrypted-disk-with-systemd).
+
+<!--more-->
 
 We assume your device is already encrypted with LUKS. All commands are run as
 root.

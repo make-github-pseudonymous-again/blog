@@ -1,7 +1,9 @@
 ---
-title: Encrypted Install With Arch Linux on BIOS
-date: 2019-10-12
-draft: true
+title: Encrypted Install With Arch Linux on UEFI
+date: 2019-01-03T00:27:32+01:00
+tags:
+  - Security
+  - Encryption
 ---
 
 So easy!
@@ -9,12 +11,12 @@ So easy!
 <!--more-->
 
 Follow the excellent
-[video](https://ipfs.c.ovfefe.cf/ipfs/QmXK7isJte2LTJhJNzn7PQmNs5aZrcjFRvmXmRr2fhvDVZ).
+[video](https://ipfs.c.ovfefe.cf/ipfs/QmTmzyHjzKdRD31eY4ueVYwyaxBaDCMSpE5LnU348vqXT1).
 
-Check you are NOT in EFI mode
+Check you are in EFI mode
 
 	ls /sys/firmware/efi
-	/usr/bin/ls: cannot access '/sys/firmware/efi': No such file or directory
+	...
 
 Update the system clock
 
@@ -32,36 +34,30 @@ Partition the storage device
 	n
 	<enter>
 	<enter>
-	+8M
-	ef02
-	n
-	<enter>
-	<enter>
-	+2G
-	<enter>
+	+512MiB
+	ef00
 	n
 	<enter>
 	<enter>
 	<enter>
-	<enter>
-	p
+	8e00
 	w
 	y
 
 Format boot partition
 
-	mkfs.ext4 /dev/sda2
+	mkfs.fat -F32 /dev/sda1
 
 Encrypt main partition
 
-	cryptsetup luksFormat /dev/sda3
+	cryptsetup luksFormat /dev/sda2
 	YES
 	<passphrase>
 	<passphrase>
 
 Open main partition
 
-	cryptsetup luksOpen /dev/sda3 main
+	cryptsetup luksOpen /dev/sda2 main
 	<passphrase>
 
 Partition LVM volume
@@ -84,7 +80,7 @@ Mount partitions
 
 	mount /dev/mapper/main-root /mnt
 	mkdir /mnt/boot
-	mount /dev/sda2 /mnt/boot
+	mount /dev/sda1 /mnt/boot
 	swapon /dev/mapper/main-swap
 
 Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
@@ -102,7 +98,7 @@ Chroot
 
 Configure time
 
-	rm -f /etc/localtime
+	rm /etc/localtime
 	ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 	hwclock --systohc --utc
 
@@ -142,23 +138,28 @@ Regenerate initramfs
 
 	mkinitcpio -p linux
 
-Install the bootloader (`grub`)
+Install the bootloader
 
-	pacman -S grub
+	bootctl --path=/boot install
 
-Edit grub's defaults
+Create boot loader
 
-	# /etc/default/grub
-	...
-	GRUB_CMDLINE_LINUX="cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root rw"
-	...
+	# /boot/loader/loader.conf
+	default arch
+	timeout 3
+	editor 0
+	console-mode auto # see https://github.com/systemd/systemd/pull/8086/commits/68d4b8ac9b9673637fa198b735f6e64b78b35d3b
+	# console-mode max
 
-Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda3`.
+Create boot loader entry
 
-Install and generate grub's config
+	# /boot/loader/entries/arch.conf
+	title Arch Linux
+	linux /vmlinuz-linux
+	initrd /initramfs-linux.img
+	options cryptdevice=UUID=<UUID>:main root=/dev/mapper/main-root rw
 
-	grub-install --target=i386-pc /dev/sda
-	grub-mkconfig -o /boot/grub/grub.cfg
+Replace `<UUID>` with the UUID found in `:read !blkid /dev/sda2`.
 
 Unmount and reboot
 
@@ -168,16 +169,12 @@ Unmount and reboot
 	umount -R /mnt
 	reboot
 
-Create an admin user
+Create an admin user (uncomment the appropriate `%wheel` line via `visudo`)
 
 	useradd -m -G wheel theadminusername
 	passwd theadminusername
 	<password>
 	<password>
-
-Uncomment the appropriate `%wheel` line via `visudo`.
-
-	%wheel ALL=(ALL) ALL
 
 Note that the login shell can be changed with
 

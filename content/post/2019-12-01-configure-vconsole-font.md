@@ -1,7 +1,9 @@
 ---
 title: "Configure Virtual Console Font"
 date: 2019-12-01T01:54:54+01:00
-draft: true
+tags:
+  - Fonts
+  - Virtual Console
 ---
 
 This post is about everything you ever wanted to ask about using a custom font
@@ -13,7 +15,7 @@ To list console fonts
 
 	ls -la /usr/share/kbd/consolefonts | less
 
-Largest default console font
+Largest stock console font
 
 	latarcyrheb-sun32
 

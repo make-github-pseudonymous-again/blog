@@ -1,10 +1,16 @@
 ---
 title: "Detect X1 Yoga Tablet Mode on Arch Linux"
 date: 2019-12-09T11:51:47+01:00
-draft: true
+tags:
+  - Automation
+  - X1 Yoga 4th Gen
+  - Tablet Mode
+  - systemd
 ---
 
-> Inspired from [this ruby script](https://github.com/alesguzik/linux_detect_tablet_mode).
+Inspired from [this ruby script](https://github.com/alesguzik/linux_detect_tablet_mode).
+
+<!--more-->
 
 Add
 

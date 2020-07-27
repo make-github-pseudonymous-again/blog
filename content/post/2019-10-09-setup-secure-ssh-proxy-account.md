@@ -1,7 +1,15 @@
 ---
-title: "2019 10 09 Setup Secure SSH Proxy Account"
+title: "Setup Secure SSH Proxy Account"
 date: 2019-10-09T11:55:57+02:00
+tags:
+  - Security
+  - SSH
+  - Proxy
 ---
+
+No need to enable full login shell if the only intended usage is proxying.
+
+<!--more-->
 
 Create user
 

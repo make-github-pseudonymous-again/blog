@@ -1,7 +1,15 @@
 ---
-title: "2019 10 09 Setup Secure SSH Tunnel Account"
+title: "Setup Secure SSH Tunnel Account"
 date: 2019-10-09T11:55:57+02:00
+tags:
+  - Security
+  - SSH
+  - Tunnel
 ---
+
+No need to enable full login shell if the only intended usage is tunneling.
+
+<!--more-->
 
 Create user
 

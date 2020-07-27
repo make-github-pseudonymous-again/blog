@@ -1,6 +1,11 @@
 ---
 date: 2018-10-27T00:00:00Z
-title: Minimal TeX Live installation on Arch
+title: Minimal TeX Live installation on Arch Linux
+tags:
+  - Minimal
+  - Arch
+  - LaTeX
+  - TeX Live
 ---
 
 Why install more than necessary?

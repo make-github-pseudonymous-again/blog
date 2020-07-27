@@ -1,7 +1,16 @@
 ---
 title: "Elementary Os 0.4.1 on HP spectre X360"
 date: 2018-04-29T11:47:21+02:00
+tags:
+  - GNU/Linux Install
+  - Elementary OS
+  - HP spectre X360
+  - UEFI
 ---
+
+Works well.
+
+<!--more-->
 
 plug usb
 

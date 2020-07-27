@@ -1,6 +1,8 @@
 ---
 date: 2018-10-27T00:00:00Z
 title: Setup a HP printer/scanner with CUPS and SANE on Arch Linux
+tags:
+  - Printer
 ---
 
 This example worked with HP LaserJet MFP M130nw (2018).

@@ -1,8 +1,15 @@
 ---
-title: "2019 06 21 Unlock Partition Automatically With Keyfile on External Device Linux"
+title: "Unlock Partition Automatically With Keyfile on External Device Linux"
 date: 2019-06-21T23:46:29+02:00
-draft: true
+tags:
+  - Security
+  - Automation
+  - Encryption
 ---
+
+Useful in specific situations.
+
+<!--more-->
 
 Step 1: add USB drives to fstab (follow the link below so that it does not fail
 if key is not present)

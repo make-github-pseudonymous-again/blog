@@ -1,7 +1,14 @@
 ---
-title: "2019 04 23 Extend Partition and Filesystem on Adjacent Partitions"
+title: "Extend Partition and Filesystem on Adjacent Partitions"
 date: 2019-04-23T16:01:37+02:00
+tags:
+  - File System
+  - Partitioning
 ---
+
+To fix your partition out-of-space problems.
+
+<!--more-->
 
 ## 1. boot on live USB
 

@@ -1,7 +1,14 @@
 ---
 title: "Install Brother printer and scanner MFC-L2700DW on Arch Linux"
 date: 2019-10-22T17:23:03+02:00
+tags:
+  - Brother
+  - Printer
 ---
+
+Using `sane`, `brscan4`, and `brother-mfc-l2700dw`.
+
+<!--more-->
 
 Install `sane`
 

@@ -1,6 +1,10 @@
 ---
 title: Keyboard Layout Configuration For Encryption Key, Virtual Console And Xorg
 date: 2018-06-20T16:31:13+02:00
+tags:
+  - Keyboard
+  - Xorg
+  - Virtual Console
 ---
 
 This post is about everything you ever wanted to ask about keyboard layout

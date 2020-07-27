@@ -1,12 +1,21 @@
 ---
 title: "Suspend Resume Hooks"
 date: 2020-06-24T10:15:37+02:00
-draft: true
+tags:
+  - Automation
+  - Screen Lock
+  - Suspend
+  - systemd
 ---
+
+For instance, to lock the screen on suspend. Can also be used to toggle WiFi,
+Bluetooth, etc.
+
+<!--more-->
 
 Define the two following units:
 
-A unif for when the system goes to sleep.
+A unit for when the system goes to sleep.
 
     # /etc/systemd/system/suspend@.service
     [Unit]

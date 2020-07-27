@@ -1,8 +1,13 @@
 ---
-title: "2019 12 03 Connect Phone to Arch Linux"
+title: "Connect Phone to Arch Linux"
 date: 2019-12-03T13:02:29+01:00
-draft: true
+tags:
+  - Phone
 ---
+
+To transfer files.
+
+<!--more-->
 
 Install `gvfs`
 

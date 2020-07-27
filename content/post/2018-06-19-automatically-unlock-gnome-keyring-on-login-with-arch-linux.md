@@ -1,7 +1,14 @@
 ---
-title: "2018 06 19 Automatically Unlock Gnome Keyring on Login With Arch Linux"
+title: "Automatically Unlock Gnome Keyring on Login With Arch Linux"
 date: 2018-06-19T12:44:02+02:00
+tags:
+  - Automation
+  - Security
 ---
+
+So that only your session password is needed.
+
+<!--more-->
 
 Install `gnome-keyring`, `libsecret`, and `seahorse`.
 
