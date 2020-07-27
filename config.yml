@@ -1,3 +1,48 @@
 baseurl: https://blog.aurelienooms.be/
-theme: prove
+theme: events
 title: Aurélien's blog
+buildFuture: false
+
+permalinks:
+  post: /:year/:month/:day/:title
+
+taxonomies:
+  tag: tags
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+    - RSS
+  page:
+    - HTML
+  taxonomy:
+    - HTML
+    - RSS
+  taxonomyTerm:
+    - HTML
+
+params:
+  logo:
+    src: /logo.png
+    alt: ULB
+  organizer: 'CN="Aurélien Ooms":mailto:info@blog.aurelienooms.be'
+  hostname: blog.aurelienooms.be
+  editURL: https://github.com/aureooms/blog
+  nav:
+    taxonomies:
+      - tags
+  calendar:
+    tzid: Europe/Brussels
+    status:
+      - CONFIRMED # Indicates event is definite.
+      - TENTATIVE # Indicates event is tentative.
+      - CANCELLED # Indicates event was cancelled.
+    classification:
+      - PUBLIC
+      - PRIVATE
+      - CONFIDENTIAL
+  timeline: false

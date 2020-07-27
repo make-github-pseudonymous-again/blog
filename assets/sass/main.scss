@@ -1,0 +1,30 @@
+$primary-color: #000801;
+$secondary-color: darken(#DFEFE2, 30%);
+
+@import "assets/vendor/materialize-src/sass/components/color-variables";
+@import "assets/vendor/materialize-src/sass/components/color-classes";
+
+$button-color: #0CCD58;
+$button-background-focus: lighten($button-color, 4%);
+$button-raised-background: $button-color;
+$button-floating-background: $button-color;
+
+@import "assets/vendor/materialize-src/sass/materialize.scss";
+
+@import "themes/events/assets/sass/base.scss";
+
+nav > div.container {
+
+  & > a.brand-logo {
+
+    & > img {
+      padding: 7px;
+    }
+
+    &.center > img {
+      padding: 5px;
+    }
+
+  }
+
+}

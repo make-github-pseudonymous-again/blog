@@ -1,0 +1,3 @@
+[submodule "themes/events"]
+	path = themes/events
+	url = gh:aureooms/hugo-theme-events
