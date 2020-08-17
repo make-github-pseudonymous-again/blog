@@ -13,7 +13,7 @@ Install `cups`, `sane` and `hplip`
 
 	pacman -S cups sane hplip
 
-Enable and starts `cups-browsed`
+Enable and start `cups-browsed`
 
 	systemctl enable --now cups-browsed.service
 
@@ -31,7 +31,7 @@ In the CUPS interface (http://localhost:631), configure a new printer:
   1. Go to *Administration* (http://localhost:631/admin),
   2. Click *Add Printer*,
   3. Select *AppSocket/HP JetDirect* and click *Continue*,
-  4. Enter the CUPS URI from above (hp:/...) and click *Continue*,
+  4. Enter the CUPS URI from above (`hp:/...`) and click *Continue*,
   5. Enter details for the printer and check the *Share printer* option,
   6. Select a driver under make HP (name should match URI),
   7. Set defaults.
