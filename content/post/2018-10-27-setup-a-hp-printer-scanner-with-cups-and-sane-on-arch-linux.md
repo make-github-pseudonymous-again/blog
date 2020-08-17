@@ -17,7 +17,7 @@ Enable and start `cups-browsed`
 
 	systemctl enable --now cups-browsed.service
 
-With the IP address of your HP printer/scanner, query its uri's
+With the IP address of your HP printer/scanner, query its URI's
 
 	hp-makeuri <printer-ip-address>
 	...
