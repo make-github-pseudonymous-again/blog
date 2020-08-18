@@ -1,6 +1,10 @@
 ---
 date: 2018-04-10T00:00:00Z
 title: Install and configure NGiИX with HTTPS on Arch Linux
+tags:
+  - Security
+  - NGiИX
+  - Certbot
 ---
 
 NGiИX is useful to proxy all sorts of web servers.
