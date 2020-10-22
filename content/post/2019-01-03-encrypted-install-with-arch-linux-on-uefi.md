@@ -11,7 +11,7 @@ So easy!
 <!--more-->
 
 Follow the excellent
-[video](https://ipfs.c.ovfefe.cf/ipfs/QmTmzyHjzKdRD31eY4ueVYwyaxBaDCMSpE5LnU348vqXT1).
+[video](https://ipfs.xn--mxac.cc/ipfs/QmTmzyHjzKdRD31eY4ueVYwyaxBaDCMSpE5LnU348vqXT1).
 
 Check you are in EFI mode
 
