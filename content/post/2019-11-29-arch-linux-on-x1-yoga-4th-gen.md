@@ -87,6 +87,29 @@ NO need to put `i915` in MODULES in `/etc/mkinitcpio.conf`.
 
 Nice PPI setting: `Xft.dpi: 216` (`192` is OK but small) in `.Xresources` (at max res `3840x2160`).
 
+Fix screen tearing by creating `/etc/X11/xorg.conf.d/20-intel.conf`.
+
+```
+Section "Device"
+  Identifier "Intel Graphics"
+  Driver "intel"
+
+  Option "TearFree" "true"
+EndSection
+```
+
+See also:
+  - https://wiki.archlinux.org/index.php/Intel_graphics#Tearing
+  - https://linuxreviews.org/HOWTO_fix_screen_tearing
+
+NB: This only works with the proprietary driver which is bug-ridden. Waiting
+for a fix for the modesetting driver.
+See
+https://gitlab.freedesktop.org/vliaskov/xserver/-/commit/18be004ad18b8a33e5854c08ab2ea023f34890b6
+(was merged into master but not into server-21.1-branch).
+Once this is merged, just have to replace `Driver "intel"` with
+`Driver "modesetting"` in this config file.
+
 ## Sound
 
 Add the `snd_hda_intel.dmic_detect=0` to kernel options
