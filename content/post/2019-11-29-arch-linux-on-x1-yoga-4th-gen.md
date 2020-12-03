@@ -185,7 +185,7 @@ Works out of the box with
 
 ## Camera
 
-?
+Works out of the box.
 
 ## Microphone
 
