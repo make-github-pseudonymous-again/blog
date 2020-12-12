@@ -89,12 +89,17 @@ Nice PPI setting: `Xft.dpi: 216` (`192` is OK but small) in `.Xresources` (at ma
 
 ## Sound
 
-Add the `snd_hda_intel.dmic_detect=0` to kernel options
+**EDIT**:  Works out of the box with latest updates (firmware/software) as of December 12 2020.
 
-	title Arch Linux with Sound Fix
-	linux /vmlinuz-linux
-	initrd /initramfs-linux.img
-	options cryptdevice=UUID=<...>:main root=/dev/mapper/main-root rw snd_hda_intel.dmic_detect=0
+    pacmd list-sinks | \
+    grep  '^\s*\(\(\* \)\?index:\|device.description =\)' | \
+    sed 's/^\s*\(\(\* \)\?index:\|device.description =\) //g' | \
+    sed 's/ <.*>//g' | \
+    xargs -L 2 echo
+    0 Cannon Point-LP High Definition Audio Controller HDMI3 Output
+    1 Cannon Point-LP High Definition Audio Controller HDMI2 Output
+    2 Cannon Point-LP High Definition Audio Controller HDMI1 Output
+    3 Cannon Point-LP High Definition Audio Controller Speaker + Headphones
 
 See https://bugs.archlinux.org/task/64720
 
@@ -189,7 +194,20 @@ Works out of the box.
 
 ## Microphone
 
-?
+Works out of the box with latest updates (firmware/software) as of December 12 2020.
+
+    pacmd list-sources | \
+    grep  '^\s*\(\(\* \)\?index:\|device.description =\)' | \
+    sed 's/^\s*\(\(\* \)\?index:\|device.description =\) //g' | \
+    sed 's/ <.*>//g' | \
+    xargs -L 2 echo
+    0 Monitor of Cannon Point-LP High Definition Audio Controller HDMI3 Output
+    1 Monitor of Cannon Point-LP High Definition Audio Controller HDMI2 Output
+    2 Monitor of Cannon Point-LP High Definition Audio Controller HDMI1 Output
+    3 Monitor of Cannon Point-LP High Definition Audio Controller Speaker + Headphones
+    4 Cannon Point-LP High Definition Audio Controller Headphones Stereo Microphone
+    5 Cannon Point-LP High Definition Audio Controller Digital Microphone
+
 
 ## Speakers
 
