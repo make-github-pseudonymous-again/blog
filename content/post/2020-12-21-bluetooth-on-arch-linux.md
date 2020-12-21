@@ -1,6 +1,13 @@
 ---
 title: Bluetooth on Arch Linux
 date: 2020-12-21T15:52:20+01:00
+tags:
+  - Automation
+  - Crashes
+  - Bluetooth
+  - Wireless
+  - Pulseaudio
+  - Audio
 ---
 
 Install software
