@@ -39,3 +39,9 @@ Connect bluetooth headset/speaker.
 	bluetoothctl scan on
 	pair ...
 	connect ...
+
+If you do not bridge `pulseaudio` and `bluetooth` you may get one of the
+following:
+
+	Failed to connect: org.bluez.Error.NotReady
+	Failed to connect: org.bluez.Error.Failed
