@@ -10,3 +10,5 @@ Configure LUKS to let TRIM pass through:
 
   - `systemd-boot`/`GRUB`: Add `:allow-discards` to cryptdevice options.
   - `crypttab`: Add `discard` option.
+
+For Btrfs look into `discard=async`??
