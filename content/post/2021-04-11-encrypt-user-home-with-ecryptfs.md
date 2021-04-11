@@ -1,11 +1,11 @@
-+++
+---
 date: 2021-04-11T00:00:00Z
 title: Encrypt user home with eCryptfs
 tags:
   - Privacy
   - Security
   - Automation
-+++
+---
 
 We encrypt a user home directory with eCryptfs. The consequence is that the
 contents of this directory are only accessible if at least one of the following is true:
