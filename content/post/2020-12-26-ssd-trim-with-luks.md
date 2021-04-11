@@ -1,5 +1,11 @@
-+++
-+++
+---
+date: 2020-12-26T00:00:00Z
+title: Configure SSD trim with LUKS
+tags:
+  - SSD
+  - LUKS
+draft: true
+---
 
 Check which drives can be trimmed with `lsblk --discard`.
 If `>= 1` then enable and start `fstrim.timer`

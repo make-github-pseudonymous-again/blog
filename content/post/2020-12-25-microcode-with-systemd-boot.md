@@ -1,7 +1,20 @@
-+++
-+++
+---
+date: 2020-12-25T00:00:00Z
+title: Configure microcode with systemd-boot
+tags:
+  - Installation
+  - Arch
+  - systemd-boot
+---
 
-Install Intel or AMD package:
+All users with an AMD or Intel CPU should install the microcode updates to
+ensure system stability.
+
+<!--more-->
+
+(Follows https://wiki.archlinux.org/index.php/Microcode)
+
+Install Intel or AMD package (depending on your CPU, check `lscpu`):
 
     pacman -S intel-ucode
 
