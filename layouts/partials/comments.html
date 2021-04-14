@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col m12">
+    <div id="coral_thread"></div>
+    <script type="text/javascript">
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://coral.matroi.de/assets/js/embed.js';
+        s.async = false;
+        s.defer = true;
+        s.onload = function() {
+          Coral.createStreamEmbed({
+            id: "coral_thread",
+            autoRender: true,
+            rootURL: 'https://coral.matroi.de',
+          });
+        };
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+  </div>
+</div>
