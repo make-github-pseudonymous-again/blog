@@ -20,7 +20,7 @@ all: build
 deploy: clean build upload
 
 build: assets static
-	$(HUGO)
+	$(HUGO) --minify
 
 serv: clean assets static
 	$(HUGO) server
