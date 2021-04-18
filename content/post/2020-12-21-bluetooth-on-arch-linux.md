@@ -31,14 +31,18 @@ Enable and start the bluetooth service
 
 Connect bluetooth headset/speaker.
 
-
 	pacman -S pulseaudio-bluetooth
 	systemctl --user restart pulseaudio
 	bluetoothctl agent on
 	bluetoothctl power on
 	bluetoothctl scan on
-	pair ...
-	connect ...
+	bluetoothctl pair ...
+	bluetoothctl connect ...
+
+> Tip: Instead of typing `bluetoothctl` for each command you can start a REPL
+> by calling `bluetoothctl` without arguments.
+
+## Troubleshoot
 
 If you do not bridge `pulseaudio` and `bluetooth` you may get one of the
 following:
