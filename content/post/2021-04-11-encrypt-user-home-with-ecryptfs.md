@@ -18,7 +18,7 @@ contents of this directory are only accessible if at least one of the following 
 This may increase privacy, depending on how the system is used.
 
 If the user home is not encrypted, it would suffice to be root (without the
-user necessary being logged in). Note that being root on another system and
+user necessarily being logged in). Note that being root on another system and
 mounting the partition hosting the user's home suffices.
 
 <!--more-->
@@ -76,8 +76,8 @@ work with `su -l` login.
 
 > Make sure the user is logged out and owns no processes. The
 > best way to achieve this is to log the user out, log into a console as the
-> root user, and check that ps -U username returns no output. You also need to
-> ensure that you have rsync, lsof, and which installed.
+> root user, and check that `ps -U username` returns no output. You also need to
+> ensure that you have `rsync`, `lsof`, and `which` installed.
 
 > The package providing `ecryptfs-migrate-home` can be found via `pacman -F
 > ecryptfs-migrate-home`.
