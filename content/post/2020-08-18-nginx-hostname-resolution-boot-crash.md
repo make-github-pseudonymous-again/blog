@@ -54,32 +54,16 @@ Some occurrences in the wild:
 
 Setup `nginx.service` to restart properly and eventually not crash.
 
-
-	 # /usr/lib/systemd/system/nginx.service
+	 # /etc/systemd/system/nginx.conf.d/override.conf
 	[Unit]
-	Description=A high performance web server and a reverse proxy server (edited)
-	After=network.target network-online.target nss-lookup.target
-
 	# Prevents more that 5 starts within 10 seconds
 	StartLimitIntervalSec=10
 	StartLimitBurst=5
 
 	[Service]
-	Type=forking
-	PIDFile=/run/nginx.pid
-	PrivateDevices=yes
-	SyslogLevel=err
-
-	ExecStart=/usr/bin/nginx -g 'pid /run/nginx.pid; error_log stderr;'
-	ExecReload=/usr/bin/nginx -s reload
-	KillMode=mixed
-
 	# Restart on failure after 15 seconds
 	Restart=on-failure
 	RestartSec=15
-
-	[Install]
-	WantedBy=multi-user.target
 
 See
 [systemd.service](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
