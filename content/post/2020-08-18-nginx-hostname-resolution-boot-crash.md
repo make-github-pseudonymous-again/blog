@@ -80,7 +80,7 @@ Two solutions are suggested
   - Use a local DNS server to resolve local hostnames.
   - Use a Zero-configuration networking service (NetBIOS or mDNS).
 
-This should broadcast the host name in `/etc/hostname`.
+This should broadcast the host name defined in `/etc/hostname`.
 See
 [this serverfault question](https://serverfault.com/questions/268401/configure-zeroconf-to-broadcast-multiple-names/986437)
 to assign multiple hostnames to a single machine.
