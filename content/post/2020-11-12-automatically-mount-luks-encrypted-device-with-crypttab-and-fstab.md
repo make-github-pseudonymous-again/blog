@@ -28,7 +28,7 @@ Create symmetric encryption key
 
 	mkdir -p /root/key
 	dd bs=512 count=4 if=/dev/urandom of=/root/key/storage iflag=fullblock
-    chmod 0400 /root/key/storage
+	chmod 0400 /root/key/storage
 
 Setup LUKS on the part
 
