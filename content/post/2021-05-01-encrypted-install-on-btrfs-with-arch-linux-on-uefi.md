@@ -164,7 +164,7 @@ Install the bootloader
 Create boot loader
 
 	# /boot/loader/loader.conf
-	default arch
+	default arch.conf
 	timeout 3
 	editor 0
 	console-mode auto # see https://github.com/systemd/systemd/pull/8086/commits/68d4b8ac9b9673637fa198b735f6e64b78b35d3b
