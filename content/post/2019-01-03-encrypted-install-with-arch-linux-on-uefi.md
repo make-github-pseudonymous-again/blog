@@ -40,7 +40,7 @@ Partition the storage device
 	<enter>
 	<enter>
 	<enter>
-	8e00
+	8309
 	w
 	y
 
