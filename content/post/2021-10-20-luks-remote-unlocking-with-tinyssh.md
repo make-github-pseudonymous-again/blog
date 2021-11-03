@@ -23,7 +23,7 @@ instance:
 
     pacman -S mkinitcpio-{netconf,tinyssh,utils}
 
-## /etc/tinyssh/root_key
+## /etc/tinyssh/root\_key
 
 Put a `ed25519` public key there
 (for instance, generated with `ssh-keygen -t ed25519`).
