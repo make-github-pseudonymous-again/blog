@@ -59,7 +59,6 @@ http {
          listen 80;
          listen [::]:80;
          server_name my.example.com;
-         root /etc/nginx/my.example.com;
     }
 
 	... repeat for each domain
@@ -101,7 +100,6 @@ http {
 		 listen 80;
 		 listen [::]:80;
 		 server_name my.example.com;
-		 root /etc/nginx/my.example.com;
 		 location / {
 		   return 301 https://$host$request_uri;
 		 }
