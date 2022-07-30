@@ -140,41 +140,15 @@ http {
 }
 ```
 
-Configure [automatic renewal of the Let's Encrypt certificates](https://wiki.archlinux.org/index.php/Let%E2%80%99s_Encrypt#Automatic_renewal):
-
-```
-# file /etc/systemd/system/certbot.service
-
-[Unit]
-Description=Let's Encrypt renewal
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/certbot renew --agree-tos
-```
+Configure [automatic renewal of the Let's Encrypt certificates](https://wiki.archlinux.org/title/Certbot#Automatic_renewal):
 
 Check that the service works:
 
-	systemctl start certbot
+	systemctl start certbot-renew
 
-Create a timer for the service:
+Enable and start the timer for the service:
 
-```
-# file /etc/systemd/system/certbot.timer
-
-[Unit]
-Description=Twice daily renewal of Let's Encrypt's certificates
-
-[Timer]
-OnCalendar=0/12:00:00
-RandomizedDelaySec=1h
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-
-	systemctl enable --now certbot.timer
+	systemctl enable --now certbot-renew.timer
 
 ### NAT (HTTPS)
 
