@@ -62,11 +62,11 @@ Unmount and reboot
 
 Sometimes you will see the following error message
 
-	error: ... (unable to lock database)
+	error: ... (could not lock database)
 
 The answer is
 
-	rm /var/lib/pacman/db.lock
+	rm /var/lib/pacman/db.lck
 
 You might also see the following error message
 
