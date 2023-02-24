@@ -1,4 +1,4 @@
-+++
+---
 date: 2022-02-22T00:00:00Z
 title: Forward port on Arch Linux
 tags:
@@ -6,7 +6,7 @@ tags:
   - Port forwarding
   - Network
 draft: true
-+++
+---
 
 Following https://www.digitalocean.com/community/tutorials/how-to-forward-ports-through-a-linux-gateway-with-iptables
 
