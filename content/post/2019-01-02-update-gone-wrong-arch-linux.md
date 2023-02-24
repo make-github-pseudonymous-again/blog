@@ -48,6 +48,9 @@ Try
 	pacman -S mkinitcpio
 	mkinitcpio -p linux
 
+> You can also just run `pacman -Su` if you cannot afford to download new
+> package versions.
+
 ### Finally
 
 Unmount and reboot
