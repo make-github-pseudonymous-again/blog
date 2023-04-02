@@ -42,7 +42,7 @@ We will call our device `storage`. It will be mounted at `/media/storage`.
 	[Unit]
 	Conflicts=umount.target
 	Before=umount.target
-	BindsTo=storage-decrypt.service dev-storage.device
+	BindsTo=storage-decrypt.service
 	After=storage-decrypt.service dev-mapper-storage.device
 	# you may specify some unit file that depends on media-storage.mount
 	# Wants=storage-postmount.service
@@ -55,7 +55,7 @@ We will call our device `storage`. It will be mounted at `/media/storage`.
 	$ cat /etc/systemd/system/storage-decrypt.service
 	[Unit]
 	Description=storage decrypt
-	BindsTo=media-storage.mount dev-storage.device
+	BindsTo=media-storage.mount
 	Requires=dev-storage.device
 	After=dev-storage.device
 	DefaultDependencies=no
@@ -64,7 +64,6 @@ We will call our device `storage`. It will be mounted at `/media/storage`.
 	Type=oneshot
 	TimeoutStartSec=0
 	RemainAfterExit=yes
-	KillMode=none
 	ExecStart=/sbin/cryptsetup luksOpen -d /root/key/storage /dev/storage storage
 	ExecStop=/sbin/cryptsetup luksClose storage
 
