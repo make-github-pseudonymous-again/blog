@@ -42,10 +42,15 @@ Regenerate `initramfs`
 
     mkinitcpio -P
 
-**NB1**: Current release of `mkinitcpio-tinyssh` is broken, to fix:
+**NB1**:
+You may notice a `tinyssh-convert` usage message when running `mkinicpio -P`.
+This is because
+[the current release of `mkinitcpio-tinyssh` is broken](https://bugs.archlinux.org/task/74522?project=1&opened=37246).
+To fix:
 
     rm -r /etc/tinyssh/sshkeydir
     tinyssh-convert < /etc/ssh/ssh_host_ed25519_key /etc/tinyssh/sshkeydir/
+    mkinitcpio -P
 
 **NB2**: No need to add ethernet module `e1000e`. Other modules might behave
 differently. This depends on correct behavior of the `autodetect` hook.
