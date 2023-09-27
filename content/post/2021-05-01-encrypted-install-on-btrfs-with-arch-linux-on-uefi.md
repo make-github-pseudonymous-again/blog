@@ -139,13 +139,13 @@ Configure the hostname
 Give keyboard access before mounting to type encryption password
 
 	# /etc/mkinitcpio.conf
-	HOOKS=(base udev autodetect modconf block keyboard encrypt filesystems fsck)
+	HOOKS=(base udev autodetect modconf kms keyboard block encrypt filesystems fsck)
 
 Optionally throw in some `consolefont` and `keymap` hooks if you plan to
 customize them.
 
 	# /etc/mkinitcpio.conf
-	HOOKS=(base udev autodetect modconf block consolefont keymap keyboard encrypt filesystems fsck)
+	HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block encrypt filesystems fsck)
 
 Regenerate initramfs
 
