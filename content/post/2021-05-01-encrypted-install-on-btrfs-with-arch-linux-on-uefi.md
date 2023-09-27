@@ -77,7 +77,7 @@ Create Btrfs subvolumes
 	btrfs subvolume create @snapshots
 	btrfs subvolume create @swap
 
-Mount Btrfs main volume, boot partition, and Btrfs subolumes
+Mount Btrfs main volume, boot partition, and Btrfs subvolumes
 
 	cd
 	umount /mnt
