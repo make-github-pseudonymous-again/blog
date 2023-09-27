@@ -93,13 +93,7 @@ Mount Btrfs main volume, boot partition, and Btrfs subvolumes
 
 Create swap file
 
-	touch /mnt/swap/swapfile
-	truncate -s 0 /mnt/swap/swapfile
-	chmod 600 /mnt/swap/swapfile
-	chattr +C /mnt/swap/swapfile
-	btrfs property set /mnt/swap/swapfile compression ''
-	dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count=4096 status=progress
-	mkswap /mnt/swap/swapfile
+	btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
 	swapon /mnt/swap/swapfile
 
 Bootstrap installation (tweak `/etc/pacman.d/mirrorlist` if too slow)
