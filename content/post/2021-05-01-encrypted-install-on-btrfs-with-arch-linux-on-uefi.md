@@ -83,7 +83,7 @@ Mount Btrfs main volume, boot partition, and Btrfs subvolumes
 	umount /mnt
 	mount -o noatime,subvol=@ /dev/mapper/main /mnt
 	mkdir /mnt/boot
-	mount /dev/sda1 /mnt/boot
+	mount -o fmask=0077,dmask=0077 /dev/sda1 /mnt/boot
 	mkdir /mnt/home
 	mount -o noatime,subvol=@home /dev/mapper/main /mnt/home
 	mkdir /mnt/.snapshots
