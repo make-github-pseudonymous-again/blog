@@ -61,13 +61,37 @@ pacman -S cronie
 systemctl enable --now cronie
 ```
 
-To enable automatic pacman transactions snapshots, install `snap-pac`:
+To enable automatic pacman transactions snapshots for `/`, install `snap-pac`:
 
 ```sh
 pacman -S snap-pac
 ```
 
 You can configure `snap-pac` at `/etc/snap-pac.ini`.
+
+To enable automatic pacman transactions snapshots for `/boot`, create the
+following pacman post-transaction hook:
+
+```
+# File: /etc/pacman.d/hooks/95-bootbackup.hook
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Path
+Target = usr/lib/modules/*/vmlinuz
+
+[Action]
+Depends = rsync
+Description = Backing up /boot...
+When = PostTransaction
+Exec = /usr/bin/rsync -a --delete /boot /.boot.bak
+```
+
+Note that since the backup is stored on the root subvolume, it should be
+possible to access previous backups by restoring previous snapshots of the root
+subvolume.
+
 
 To enable automatic snapshots on boot, enable `snapper-boot.timer`:
 
