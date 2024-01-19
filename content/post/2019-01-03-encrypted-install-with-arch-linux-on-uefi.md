@@ -34,7 +34,7 @@ Partition the storage device
 	n
 	<enter>
 	<enter>
-	+512MiB
+	+1GiB
 	ef00
 	n
 	<enter>
@@ -43,6 +43,12 @@ Partition the storage device
 	8309
 	w
 	y
+
+> **NB**: You can reduce the size to `+512MiB` if you do not plan to install both
+> `linux` and `linux-lts`, or if you do not have a graphical environment and
+> can afford to remove the early `kms` hook. You can even reduce it to
+> `+256MiB` if you do not plan to use any of those. If you do not know what
+> this means, leave it at `+1GiB`.
 
 Format boot partition
 
