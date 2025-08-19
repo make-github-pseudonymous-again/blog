@@ -10,6 +10,10 @@ tags:
   - Audio
 ---
 
+Did you know that *Bluetooth* is named after a 10th-century Danish king?
+
+<!--more-->
+
 Install software
 
 	pacman -S bluez bluez-utils
