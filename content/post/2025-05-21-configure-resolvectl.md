@@ -2,7 +2,7 @@
 date: 2025-05-21T00:00:00Z
 title: "Configure `resolvectl`"
 tags:
-  - Arch Linux
+  - Arch
   - DNS
   - Forwarding
   - Network

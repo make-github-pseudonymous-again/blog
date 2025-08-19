@@ -2,7 +2,7 @@
 date: 2023-10-01T00:00:00Z
 title: Automated snapshots with Btrfs
 tags:
-  - Arch Linux
+  - Arch
   - Btrfs
   - Backup
   - Snapshots

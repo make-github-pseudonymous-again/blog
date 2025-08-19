@@ -2,7 +2,7 @@
 date: 2022-02-22T00:00:00Z
 title: Forward port on Arch Linux
 tags:
-  - Arch Linux
+  - Arch
   - Port forwarding
   - Network
 draft: true

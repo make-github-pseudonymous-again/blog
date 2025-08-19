@@ -2,7 +2,7 @@
 date: 2022-01-03T00:00:00Z
 title: Install Arch Linux on OVH VPS
 tags:
-  - Arch Linux
+  - Arch
   - OVH
   - VPS
 draft: true
