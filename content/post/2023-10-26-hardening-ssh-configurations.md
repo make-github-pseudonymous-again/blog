@@ -7,6 +7,9 @@ tags:
   - SSH
 ---
 
+Avoid using weak encryption.
+
+<!--more-->
 
 Install `ssh-audit`:
 

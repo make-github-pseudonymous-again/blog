@@ -11,6 +11,10 @@ tags:
   - pacman
 ---
 
+To easily rollback `/`.
+
+<!--more-->
+
 Install `snapper`
 
 ```sh

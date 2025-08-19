@@ -9,6 +9,7 @@ tags:
 
 We encrypt a user home directory with eCryptfs. The consequence is that the
 contents of this directory are only accessible if at least one of the following is true:
+<!--more-->
   - You know the user's password.
   - The user is logged in\* AND you have read permission to the user's directory
     (if you are root for instance).

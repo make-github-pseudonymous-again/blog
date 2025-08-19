@@ -8,6 +8,10 @@ tags:
   - Reflector
 ---
 
+To reduce Arch Linux update time.
+
+<!--more-->
+
 Install Reflector:
 
 ```sh
