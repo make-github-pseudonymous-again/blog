@@ -21,17 +21,21 @@ net.ipv6.conf.all.forwarding=1
 
 Then configure, enable, and start iptables.
 
-```console
+```sh
 EXT=<packet origin network>
-PORT=<packet origin port>
 INT=<destination network>
-SRC=<source IP address on destination network>
-DEST=<destination IP address on destination network>
-sudo iptables -A FORWARD -i $EXT -o $INT -p tcp --syn --dport $PORT -m conntrack --ctstate NEW -j ACCEPT
 sudo iptables -A FORWARD -i $EXT -o $INT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 sudo iptables -A FORWARD -i $INT -o $EXT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+PORT=<packet origin port>
+sudo iptables -A FORWARD -i $EXT -o $INT -p tcp --syn --dport $PORT -m conntrack --ctstate NEW -j ACCEPT
+
+DEST=<destination IP address on destination network>
 sudo iptables -t nat -A PREROUTING -i $EXT -p tcp --dport $PORT -j DNAT --to-destination $DEST
+
+SRC=<source IP address on destination network>
 sudo iptables -t nat -A POSTROUTING -o $INT -p tcp --dport $PORT -d $DEST -j SNAT --to-source $SRC
+
 sudo iptables-save -f /etc/iptables/iptables.rules
 sudo systemctl enable --now iptables
 ```
